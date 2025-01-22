@@ -649,6 +649,44 @@ Todo:
       }
       document.getElementById("additionalService").innerHTML = additionalServiceResult;
     }
+
+    function function12vbattery(){
+      var rr12vbattery = "";
+      var rr12vbatterybase = "REMOVED BATTERY COVER. DISCONNECTED BATTERY AND REMOVED. INSTALLED NEW BATTERY AND ASSEMBLED IN REVERSE ORDER. ";
+      var rr12vbatterybase1 = "REMOVED BATTERY COVER AND ENGINE CONTROL UNIT COVER. DISCONNECTED BATTERY GROUND AND MOVED ENGINE CONTROL UNIT TO ONE SIDE. REMOVED AIR INTAKE PIPE AND ENGINE AIR FILTER HOUSING. REMOVED BATTERY VOLTAGE DIP LIMITER AND BATTERY PREFUSE BOX. REMOVED 12V BATTERY. INSTALLED NEW BATTERY AND ASSEMBLED IN REVERSE ORDER. ";
+      var rr12vbatteryright = "MOVED FRONT RIGHT PASSENGER SEAT FORWARD AND REMOVED BATTERY COVERS. REMOVED 12V BATTERY. INSTALLED NEW BATTERY AND ASSEMBLED IN REVERSE ORDER. ";
+      var rr12vbatteryleft = "UNFASTENED DRIVE'S SEAT AND REMOVED. PARTIALLY REMOVED FRONT LEFT FLOOR COVER. REMOVED 12V BATTERY COVERS AND REMOVED BATTERY. INSTALLED NEW BATTERY AND ASSEMBLED IN REVERSE ORDER. TORQUED SEAT FRAME TO SPEC. ";
+      var rr12vbattery1 = "CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED QUICK TEST. CLEARED FAULTS. ";
+      var rr12vbattery2 = "PERFORMED FINAL QUICK TEST AND PRINTED. ";
+      var rr12vbattery3 = "PERFORMED CONFIRMATION OF BATTERY CHANGE. ";
+      var rr12vbattery4 = "DROVE THE VEHICLE OUT AND CONFIRMED NO BATTERY WARNING MESSAGES ON THE CLUSTER. ";
+      if (document.getElementById("function12vbatterybase").checked == true) {
+        rr12vbattery = rr12vbatterybase;
+      }
+      if (document.getElementById("function12vbatterybase1").checked == true) {
+        rr12vbattery = rr12vbatterybase1;
+      }
+      if (document.getElementById("function12vbatteryright").checked == true) {
+        rr12vbattery = rr12vbatteryright;
+      }
+      if (document.getElementById("function12vbatteryleft").checked == true) {
+        rr12vbattery = rr12vbatteryleft;
+      }
+      if (document.getElementById("function12vbattery1").checked == true) {
+        rr12vbattery += rr12vbattery1;
+      }
+      if (document.getElementById("function12vbattery2").checked == true) {
+        rr12vbattery += rr12vbattery2;
+      }
+      if (document.getElementById("function12vbattery3").checked == true) {
+        rr12vbattery += rr12vbattery3;
+      }
+      if (document.getElementById("function12vbattery4").checked == true) {
+        rr12vbattery += rr12vbattery4;
+      }
+      document.getElementById("RRbattery").innerHTML = rr12vbattery;
+    }
+
     function functionFieldMeasure(){
       var space = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
       var functionFieldMeasureResult = "";
@@ -1676,6 +1714,9 @@ Todo:
       var M260ENGINEHeadP = "<br><br><b>Parts:</b><br>A0299971645 INJECTOR FLAT SEALS x 4<br>A0009976511 INTAKE DUCT ADAPTER SEALS x 2<br>A0009976411 INTAKE DUCT ADAPTER SEALS x 1<br>A0219979745 FUEL PUMP O-RING<br>A2700160080 VACUUM PUMP GASKET<br>A2700150200 END COVER FOR CAM AND TENSIONER x 2<br>A2600181700 FILLER NECK SEAL<br>A0009977804 LARGE O-RING FOR INTAKE MANIFOLD<br>A0009979618 CAMSHAFT LIFT ACTUATOR<br>A2601422300 CAT TO TURBO SEAL<br>A0029903950 CAT TO TURBO NUTS x 5<br>A0009973807 COOLANT LINE AT TURBO SEAL x 3<br>A2740960100 OIL LINE AT TURBO SEAL<br>A0249971045 OIL LINE AT TURBO SEAL x 2<br>A0299971345 THROTTLE VALVE TO CHARGE PIPE SEAL<br>A2700960080 THORTOLE VALVE TO FLANGE SEAL<br>A0000160569 CYLINDER HEAD BOLTS x 10<br>A2600160200 CYLINDER HEAD GASKET<br>A2601420000 EXHAUST MANIFOLD GASKET<br>A2711420072 EXHAUST MANIFOLD NUTS x 8<br>A0009942801 EXHAUST MANIFOLD NUT HOLDER LOWER<br>A0009942901 EXHAUST MANIFOLD NUT HOLDER UPPER<br>A0019901816 EXHAUST MANIFOLD STUDS x 8<br>A0019905722 CYLINDER HEAD COVER BOLTS x 18<br>A0029902422 CYLINDER HEAD COVER BOLTS x 6<br>A0009975711 COOLANT LINE AT HEAD COVER O-RING<br>N000000004683 LOW PRESSURE LINE AT HIGH PRESSURE PUMP<br>N000000001147 BOLTS FOR HIGH PRESSURE FUEL PUMP x 2<br>BLACK RTV SEALANT FOR UPPER TIMING CASE COVER<br>BLACK RTV SEALANT FOR CYLINDER HEAD COVER<br>COOLANT<br>ENGINE OIL AND FILTER<br><br>CYLINDER HEAD WITH VALVES<br>A0009903924 CAMSHAFT SOLENOID BOLTS IF REMOVED x 6<br>A0169975045 CAMSHAFT SOLENOID O-RINGS IF REMOVED x 2<br>";
       M260ENGINEHeadT = "<br><br><b>Torque Specifications:</b><br>008 Nm, 60 d&nbsp Feed/return lines to turbocharger/crankcase<br>030 Nm&nbsp Clamp/Nut Exhaust to turbocharger<br>025 Nm&nbsp Exhaust mounts to crankcase<br>010 Nm&nbsp Turbocharger heat shields<br>028 Nm&nbsp Camshaft hold downs<br>018 Nm, 45 d&nbsp Center valve to camshaft adjusters<br>040 Nm&nbsp Chain tensioner<br>022 Nm&nbsp Lifting eye to cylinder head<br>009 Nm&nbsp Filler neck to cylinder head cover<br>004 Nm, 60 d&nbsp camshaft solenoid to timing case cover<br>009 Nm&nbsp Upper timing case cover<br>106 Nm&nbsp Stab mount to body<br>130 Nm&nbsp Stab mount to engine mount<br>058 Nm&nbsp Engine mount to cylinder head<br>106 Nm&nbsp Engine mount to body M12<br>058 Nm&nbsp Engine mount to body M10<br>008 Nm, 30 d&nbsp Vacuum pump<br>009 Nm&nbsp Intake valve lift actuator<br>015 Nm, 75 d, 25 d&nbsp Union nut to HPFP and rail<br>008 Nm&nbsp Fuel distributor to head cover<br><br><b>Tightening Procedure:</b><br>AR07.03-P-1030-01MFC&nbsp Fuel distributor<br>AR01.40-P-0122-01MFC&nbsp Upper timing case cover<br>AR01.20-P-5014-03MT&nbsp Cylinder head cover<br>AR01.30-P-5800-01MFC&nbsp Cylinder head<br>AR09.40-P-6036MFC&nbsp Exhaust manifold RR<br>AR09.41-P-1312-01MT&nbsp Intake manifold<br><br><b>Sealant Path:</b><br>AH01.30-P-1000-02MR&nbsp Timing case cover<br>AH01.30-P-1000-08MM&nbsp Cylinder head cover<br>";
       var M260ENGINEAirFilter = "REMOVED ENGINE CONTROL UNIT COVER AND MOVED CONTROL UNIT TO THE SIDE. REMOVED ENGINE AIR FILTER. INSTALLED NEW FILTER AND ASSEMBLED IN REVERSE ORDER.";
+      var M260ENGINEpcv = "REMOVED BATTERY COVER AND DISCONNECTED 12V BATTERY. REMOVED UPPER ENGINE COVER, AIR INTAKE HOSE, AND ENGINE AIR FILTER HOUSING. LIFTED THE VEHICLE AND REMOVED LOWER ENGINE COVER. DRAINED ENGINE COOLANT. REMOVED RIGHT FRONT WHEEL AND DISCONNECTED RIGHT LOWER CONTROL ARM FROM KNUCKLE. REMOVED RIGHT FRONT DRIVE AXLE. REMOVED HEAT SHIELD IN AREA OF OIL SEPARATOR. UNBOLTED LOWER REAR ENGINE STABILIZER MOUNT FROM THE ENGINE. DETACHED OIL FILLER NECK FROM THE HEAD COVER. DISCONNECTED VACUUM AND EVAP HOSES IN AREA OF CHARGE AIR DISTRIBUTOR. REMOVED AIR MANIFOLD, THROTTLE BODY, INTERMEDIATE FLANGE, AND CHARGE AIR DISTRIBUTOR. DISCONNECTED COOLANT LINE AT THERMOSTAT. REMOVED OIL SEPARATOR WITH CRANKCASE PARTIAL LOAD VENT VALVE. INSTALLED NEW OIL SEPARATOR WITH PARTIAL LOAD VALVE AND HOSE. ASSEMBLED IN REVERSE ORDER, REPLACING RELEVANT SEALS, AND TORQUING TO SPEC. CONNECTED COOLANT VACUUM FILLER AND FILLED COOLING SYSTEM. CONNECTED COOLANT PRESSURE TESTER AND CONFIRMED NO LEAKS AND PRESSURE DOES NOT DROP. PERFORMED COOLANT BLEEDING PROCEDURE. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED QUICK TEST AND CLEARED FAULTS. PRINTED FINAL QUICK TEST. TEST DROVE THE VEHICLE AND CONFIRMED CEL IS OFF. ";
+      var M260ENGINEpcvT = "<br><br><b>Torque Specifications:</b><br><b>9 Nm</b> Oil separator<br><b>14 Nm</b> Intake manifold";
+      var M260ENGINEpcvP = "<br><br><b>Parts:</b><br>Crankcase oil separator with partial load vent valve<br>A0009977804 Intake intermediate seal<br>A2700960180 x 4 Intake seals<br>A0009979205 Coolant line o-ring<br>A0009914700 Plastic clip<br>Coolant";
       if (document.getElementById("M260ENGINEHead").checked == true) {
         var functionM260ENGINEResult = M260ENGINEHead;
         var functionM260ENGINEPResult = M260ENGINEHeadP;
@@ -1689,6 +1730,12 @@ Todo:
       if (document.getElementById("M260ENGINEAirFilter").checked == true) {
         var functionM260ENGINEResult = M260ENGINEAirFilter;
         document.getElementById("m260cylinderhead").hidden = true;
+      }
+      if (document.getElementById("M260ENGINEpcv").checked == true) {
+        var functionM260ENGINEResult = M260ENGINEpcv;
+        var functionM260ENGINEPResult = M260ENGINEpcvP;
+        var functionM260ENGINETResult = M260ENGINEpcvT;
+        document.getElementById("m260cylinderhead").hidden = true; // do not change
       }
       document.getElementById("M260ENGINE").innerHTML = functionM260ENGINEResult;
       document.getElementById("M260ENGINEP").innerHTML = functionM260ENGINEPResult;
@@ -2302,7 +2349,7 @@ Todo:
 				<span class="a"></span>
 
 				<button class="button"; onclick="CopyToClipboard('BRAKES')">
-					BRAKES</button><br>
+					R&R BRAKES</button><br>
 					<form oninput="functionBrakes()">
 						<input type="checkbox" id="functionBrakesFront" name="functionBrakesC">
 						<label class="s1" for="functionBrakesFront">Front&emsp;</label>
@@ -2314,6 +2361,31 @@ Todo:
 						<label class="s1" for="functionBrakesFixed">Fixed Caliper&emsp;</label>
 					</form>
 					<s1 id="BRAKES";>REPLACE BRAKES</s1>
+
+				<span class="a"></span>
+
+        <button class="button"; onclick="CopyToClipboard('RRbattery')">
+					R&R 12v BATTERY</button><br>
+					<form oninput="function12vbattery()">
+						<input type="radio" id="function12vbatterybase" name="nfunction12vbattery">
+						<label class="s1" for="function12vbatterybase">117 156&emsp;</label>
+            <input type="radio" id="function12vbatterybase1" name="nfunction12vbattery">
+						<label class="s1" for="function12vbatterybase1">118 247&emsp;</label>
+						<input type="radio" id="function12vbatteryright" name="nfunction12vbattery">
+						<label class="s1" for="function12vbatteryright">Right&emsp;</label>
+						<input type="radio" id="function12vbatteryleft" name="nfunction12vbattery">
+						<label class="s1" for="function12vbatteryleft">Left&emsp;</label>						
+            &emsp;
+            <input type="checkbox" id="function12vbattery1" name="nfunction12vbattery">
+						<label class="s1" for="function12vbattery1">QT & Erase&emsp;</label>
+            <input type="checkbox" id="function12vbattery2" name="nfunction12vbattery">
+						<label class="s1" for="function12vbattery2">FQT & Print&emsp;</label>
+            <input type="checkbox" id="function12vbattery3" name="nfunction12vbattery">
+						<label class="s1" for="function12vbattery3">Reset&emsp;</label>
+            <input type="checkbox" id="function12vbattery4" name="nfunction12vbattery">
+						<label class="s1" for="function12vbattery4">Confirm&emsp;</label>
+					</form>
+					<s1 id="RRbattery";>REMOVED BATTERY COVER. DISCONNECTED BATTERY AND REMOVED. INSTALLED NEW BATTERY AND ASSEMBLED IN REVERSE ORDER. </s1>
 
 				<span class="a"></span>
 
@@ -2462,14 +2534,6 @@ Todo:
 
 				<span class="a"></span>
 
-				<button class="button"; onclick="CopyToClipboard('RRBATTERY')">
-					REPLACE MAIN BATTERY</button><br>
-					<s1 id="RRBATTERY";>
-						REMOVED BATTERY COVER. DISCONNECTED POSITIVE AND NEGATIVE CALBES. REMOVED BATTERY HOLD DOWN. REMOVED BATTERY. INSTALLED NEW BATTERY. REASSEMBLED IN REVERSE ORDER. CONNECTED XENTRY DIAGNOSIS. CONFIRMED BATTERY CHANGE IN FRONT SAM CONTROL UNIT.
-					</s1>
-
-				<span class="a"></span>
-
 				<button class="button"; onclick="CopyToClipboard('DIFFPINIONHOUSINGSEAL')">
 					FRONT DIFFERENTIAL PINION HOUSING SEAL
 					</button><br>
@@ -2589,10 +2653,12 @@ Todo:
 					<form oninput="functionM260ENGINE()">
 						<input type="radio" id="M260ENGINESpark" name="M260ENGINE">
 						<label class="s1" for="M260ENGINESpark">Spark Plugs&emsp;</label>
-						<input type="radio" id="M260ENGINEHead" name="M260ENGINE">
-						<label class="s1" for="M260ENGINEHead">Cylinder Head&emsp;</label>
             <input type="radio" id="M260ENGINEAirFilter" name="M260ENGINE">
 						<label class="s1" for="M260ENGINEAirFilter">Air Filter&emsp;</label>
+						<input type="radio" id="M260ENGINEHead" name="M260ENGINE">
+						<label class="s1" for="M260ENGINEHead">Cylinder Head&emsp;</label>
+            <input type="radio" id="M260ENGINEpcv" name="M260ENGINE">
+						<label class="s1" for="M260ENGINEpcv">Crankcase Vent w/o M016&emsp;</label>
 					</form>
 					<s1 id="M260ENGINE";></s1>
           <s3 id="M260ENGINEP"></s3>
@@ -3859,7 +3925,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 12 Jan 2025</p></s3l>
+          Updated: 21 Jan 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
