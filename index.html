@@ -1892,6 +1892,28 @@ Todo:
       document.getElementById("724.1TransmissionT").innerHTML = Transmission7241Torques;
 
     }
+    function functionTransmission725(){
+      var Transmission725Result = "";
+      var Transmission725Torques = "";
+      var Transmission725Parts = "";
+      var Transmission725Service = "LIFTED THE VEHICLE AND REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DRAINED TRANSMISSION OIL. REMOVED TRANSMISSION OIL PAN. INSTALLED NEW TRANSMISSION OIL PAN WITH NEW BOLTS. PRE-FILLED TRANSMISSION OIL. CONNECTED XENTRY SCAN TOOL AND BATTERY CHARGER. PERFORMED TRANSMISSION OIL LEVEL CHECK. ADJUSTED TRANSMISSION OIL TO CORRECT SPEC. INSTALLED NEW PLATIC DRAIN PLUG. REASSEMBLED IN REVERSE ORDER. TEST DROVE THE VEHICLE. VERIFIED VEHICLE DRIVES AND SHIFTS SMOOTHLY. CONFIRMED NO LEAKS AND RE-INSTALLED LOWER COVERS. ";
+      var Transmission725ServiceT = "<br><b>Drain positions:</b> 4 (drain fully), 1 (fill), 2 (small drain), 3 (justify). <br>Pan to transmission housing bolts: 4nm + 90 deg <br>Prefill w/ 4.5L - drained from oil pan<br>Prefill w/ 7.5L - drained from oil pan + torque converter.";
+      var Transmission725RR = "LIFTED THE VEHICLE AND REMOVED COMPLETE LOWER UNDERBODY COVERS. PLACED THE VEHICLE IN NEUTRAL AND PARKING BRAKE IN SERVICE MODE. DISCONNECTED 12V BATTERY GROUND. DRAINED TRANSMISSION FLUID. DISCONNECTED ELECTRICAL CONNECTORS AT TRANSMISSION, TRANSFER CASE, 48V POWER AND GROUND AT TRANSMISSION. REMOVED LEFT AND RIGHT LOWER COVERS AND REMOVED REAR ENGINE SUPPORT. REMOVED COMPLETE EXHAUST AND HEAT SHIELDS. REMOVED REAR DRIVESHAFT AND FRONT PROPELLER SHAFT. REMOVED SERVICE COVER AT TRANSMISSION BELL HOUSING AND REMOVED SCREWS HOLDING ROTOR TO THE DRIVE PLATE. REMOVED DAMPING MATERIAL ON TRANSMISSION AND UNFASTENED CABLE DUCT FROM TRANSMISSION BELL HOUSING. UNBOLTED TRANSMISSION FROM THE ENGINE AND REMOVED. REMOVED TRANSFER CASE FROM THE TRANSMISSION. <br><br> INSTALLED NEW PILOT BUSHING OF DRIVE UNIT. <br>INSTALLED NEW TRANSMISSION TO ENGINE AND TORQUED TO SPEC. <br>ASSEMBLED IN REVERSE ORDER, REPLACING SEALS AND BOLTS WHERE APPLICABLE. RE-CONNECTED 12V BATTERY GROUND. CONNECTED XENTRY AND BATTERY CHARGER. PRE-FILLED TRANSMISSION WITH 7.5 L. FILLED LOW TEMP COOLANT AND PERFORMED BLEEDING PROCEDURE. <br>PERFORMED TEST ROUTINE TO CHECK TRANSMISSION OIL LEVEL. ADJUSTED TO CORRECT LEVEL. PERFORMED TRANSMISSION INITIAL START UP AND ADAPTATION. PERFORMED TEST DRIVE. CONFIRMED VEHICLE SHIFTS SMOOTHLY. <br>LIFTED THE VEHICLE AND CONFIRMED NO OIL LEAKS. INSTALLED LOWER COVERS. CLEARED FAULTS AND PRINTED FINAL QUICK TEST. ";
+      var Transmission725RRT = "<br><br><b>Torque Specs:</b><br><b>14 Nm</b> Transfer case fill/drain screw <br><b>47 Nm</b> Transfer case to transmission<br><b>55 Nm + 90 deg</b> Pilot bushing to rotor <br><b>42 Nm</b> Transmission to engine<br><b>3Nm + 30 Nm + 90 deg</b> Rotor to drive plate<br><b>20 Nm</b> Ground line to transmission housing<br><b>16 Nm</b>Nuts for ISA<br><b>40 Nm + 90 deg</b> Propeller shaft at transfer case / rear adapter<br><b>60 Nm + 90 deg</b> Propeller shaft to rear axle differential<br><b>25 Nm</b> Propeller shaft intermediate bearing<br><b>50 Nm</b>	Exhaust center holder body (16mm)<br><b>50 Nm</b> Rear engine mount and support";
+      var Transmission725RRP = "<br><br><b>Parts List:</b><br><b>A7252721107</b> x 1 Pilot bushing<br><b>A0009904919</b> x 4 Pilot bushing bolts<br><b>A2540163400</b> x 1 Transmission gasket to engine<br><b>A0009903925</b> x 4 Rotor to drive plate bolts<br><b>A1642770014</b> x 1 Transfer case gasket to transmission<br><b>A0009951733</b> x 1 Exhaust clamp<br><b>A0009907225</b> x 6 Driveshaft bolts<br><b>A0119900904</b> x 3 Driveshaft bolts<br><b>A0009909306</b> x 3 Driveshaft bolts<br><b>A0009907225</b> x 12 Front driveshaft bolts<br><b>8L Transmission Oil</b><br><b>Coolant</b>";
+      if (document.getElementById("Transmission725Service").checked == true) {
+        var Transmission725Result = Transmission725Service;
+        var Transmission725Torques = Transmission725ServiceT;
+      }
+      if (document.getElementById("Transmission725RR").checked == true) {
+        Transmission725Result = Transmission725RR;
+        Transmission725Torques = Transmission725RRT;
+        Transmission725Parts = Transmission725RRP;
+      }
+      document.getElementById("725Transmission").innerHTML = Transmission725Result;
+      document.getElementById("725TransmissionT").innerHTML = Transmission725Torques;
+      document.getElementById("725TransmissionP").innerHTML = Transmission725Parts;
+    }
     function functionM177LS2ENGINE(){
       var functionM177ls2ENGINE = ""; //leave blank
       var functionM177ls2ENGINEP = ""; //leave blank
@@ -2448,16 +2470,6 @@ Todo:
 
 				<span class="a"></span>
 
-				<button class="button"; onclick="CopyToClipboard('725SERVICE')">
-					TRANSMISSION SERVICE 9G-Tronic 725</button><br>
-					<s1 id="725SERVICE";>LIFTED THE VEHICLE AND REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DRAINED TRANSMISSION OIL. REMOVED TRANSMISSION OIL PAN. INSTALLED NEW TRANSMISSION OIL PAN WITH NEW BOLTS. PRE-FILLED TRANSMISSION OIL. CONNECTED XENTRY SCAN TOOL AND PERFORMED TRANSMISSION OIL LEVEL CHECK. ADJUSTED TRANSMISSION OIL TO CORRECT SPEC. INSTALLED NEW PLATIC DRAIN PLUG. REASSEMBLED IN REVERSE ORDER. TEST DROVE THE VEHICLE. VERIFIED VEHICLE DRIVES AND SHIFTS SMOOTHLY.</s1>
-					<s3><br>Drain positions: 4 (drain fully), 1 (fill), 2 (small drain), 3 (justify).
-						<br>Pan to transmission housing bolts: 4nm + 90 deg
-						<br>Prefill w/ 4.5L - drained from oil pan
-						<br>Prefill w/ 7.5L - drained from oil pan + torque converter</s3>
-
-				<span class="a"></span>
-
         <button class="button"; onclick="CopyToClipboard('724Transmission')">
           TRANSMISSION 724.0 7-Speed DCT DKG</button><br>
           <form oninput="functionTransmission724()">
@@ -2484,8 +2496,21 @@ Todo:
           <s1 id="724.1Transmission"></s1><br>
           <s3 id="724.1TransmissionT"></s3>
 
-          <span class="a"></span>
+        <span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('725Transmission')">
+          TRANSMISSION 725.1 9G-Tronic VGS</button><br>
+          <form oninput="functionTransmission725()">
+            <input type="Radio" id="Transmission725Service" name="Transmission725">
+            <label class="s1" for="Transmission725Service">Transmission Service&emsp;</label>
+            <input type="Radio" id="Transmission725RR" name="Transmission725">
+            <label class="s1" for="Transmission725RR">R&R 725.1 M256.8 -ME10&emsp;</label>
+          </form>
+          <s1 id="725Transmission"></s1><br>
+          <s3 id="725TransmissionT"></s3>
+          <s3 id="725TransmissionP"></s3>
+
+        <span class="a"></span>
 
 				<button class="button"; onclick="CopyToClipboard('SPARK3')">
 					REPLACE SPARK PLUGS M157</button><br>
@@ -3925,7 +3950,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 21 Jan 2025</p></s3l>
+          Updated: 29 Jan 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
