@@ -1956,7 +1956,7 @@ Todo:
         <a href="https://retailfactory.mercedes-benz.com/iri-gui/" target="_blank"><i class="fa fa-diamond"></i>&nbsp&nbsp&nbsp;</a>
         <a href="https://xentry.mercedes-benz.com/xhpi/" target="_blank"><i class="fa fa-cubes"></i>&nbsp&nbsp&nbsp;</a>
         <a href="https://outlook.live.com/mail/0/inbox?nlp=1" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp&nbsp&nbsp;</a>
-        <a href="#"><i class="fa fa-phone" onclick="toggleDiv('phoneDiv')"></i>&nbsp&nbsp&nbsp;</a>
+        <a href="https://www.inspect.app.coxautoinc.com/ReactMsgCenter" target="_blank"><i class="fa fa-comments"></i>&nbsp&nbsp&nbsp;</a>
         <a href="#"><i class="fa fa-lock" onclick="show('notMe','onOff');"></i>&nbsp&nbsp&nbsp;</a><!--Lock button -->
       </div>
       <div class="vinDiv">
@@ -1968,7 +1968,7 @@ Todo:
         </form>
       </div>
     </div>
-    <div class="newMainDiv" id="onOff" style="display:block" onscroll="mainPageFocus()" onclick="mainPageFocus()";> <!-- Main Story Div -->                   <!-- FIXME:  -->
+    <div class="newMainDiv" id="onOff" style="display:none" onscroll="mainPageFocus()" onclick="mainPageFocus()";> <!-- Main Story Div -->                   <!-- FIXME:  -->
       <div class="newSecondaryDiv" id="svcDiv" style="display: block;"> <!-- ***************************************** SERVICE STORIES ******************************************* -->
         <s2>Service</s2><br>
         <!--<button class="button"; onclick="testButtonFunction(97)">Test Button</button><br> FIXME --> 
@@ -3695,6 +3695,12 @@ Todo:
         
         <span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('2023060001')">
+          THERMOSTAT DIAGNOSIS 0.3H</button><br>
+            <s1 id="2023060001">PER MBC CAMPAIGN 2023060001, THE SOFTWARE OF THE AIR CONDITIONING CONTROL UNIT MAY NOT COMPLY WITH THE SPECIFICATIONS. SOFTWARE WILL NEED TO BE UPDATED. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF N22/1 AUTOMATIC AIR CONDITIONING (AAC). DISCONNECTED.</s1>
+          
+        <span class="a"></span>
+
         <button class="button"; onclick="CopyToClipboard('2024030008')">
         STATE OF HEALTH CALCULATION - 48V BATTERY 0.3H - 0.7H</button><br>
           <s1 id="2024030008">PER MBC CAMPAIGN 2024030008, STATE OF BATTERY HEALTH RESISTANCE MIGHT NOT MEET SPECIFICATIONS. <br>CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF A66 BATTERY MODULE (48V, BM48). CONFIRMED NO FAULTS ARE DISPLAYED IN THE CLUSTER AFTER THE UPDATE. DISCONNECTED XENTRY AND BATTERY CHARGER.</s1>
@@ -3896,37 +3902,9 @@ Todo:
             <td><s5>Artem 146</s5></td>
             <td><s5></s5></td>
           </tr>
-          <tr>
-            <td><s4>Service</s4></td>
-            <td><s5>333</s5></td>
-          </tr>
-          <tr>
-            <td><s5>Rey 153</s5></td>
-            <td><s5>230</s5></td>
-          </tr>
-          <tr>
-            <td><s5>Raj 105</s5></td>
-            <td><s5>243</s5></td>
-          </tr>
-          <tr>
-            <td><s5>Simon 136</s5></td>
-            <td><s5>258</s5></td>
-          </tr>
-          <tr>
-            <td><s4>Parts</s4></td>
-            <td><s5>555</s5></td>
-          </tr>
-          <tr>
-            <td><s5>Manager</s5></td>
-            <td><s5>248</s5></td>
-          </tr>
-          <tr>
-            <td><s5>Jan</s5></td>
-            <td><s5>252</s5></td>
-          </tr>
         </table>
         <button type="button" onclick="toggleDiv('phoneDiv')" style="width: 100%">Close</button>
-      </div>
+      </div> <!-- Not in use-->
     </div><!-- END OF MAIN STORY DIV-->
     <div class="newMainDiv" id="notMe" style="display: block;"; > <!-- MAIN LOCK SCREEN -->
       <div class="newSecondaryDiv"> <!-- Not Me Div -->
@@ -3956,7 +3934,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 02 Mar 2025</p></s3l>
+          Updated: 15 Mar 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
