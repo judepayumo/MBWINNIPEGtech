@@ -70,6 +70,11 @@ Todo:
       font-family: "Lucinda Console", "Curier New", monospace;
       color: rgb(41, 41, 41);
     }
+    s3e{/*font format for titles*/
+      font-size: 12pt;
+      font-family: "Lucinda Console", "Curier New", monospace;
+      color: rgb(41, 41, 41);
+    }
     s4{/*font format for phone*/
       font-size: 20px;
       font-family: "Lucinda Console", "Curier New", monospace;
@@ -1332,6 +1337,75 @@ Todo:
       }
 
     }//support function for functionPreq
+
+    function functionStorage(){//Tire chalet storage form 
+      var storageEmail = "<h3><u>TIRE CHALET ";
+      if(document.getElementById("storeSummers").checked == true){
+        storageEmail = storageEmail + "SUMMER ";
+      }else{
+        storageEmail = storageEmail + "WINTER ";
+      }
+      storageEmail = storageEmail + " TIRE STORAGE</u></h3><br>"
+      + "<br><br><b>CUSTOMER: </b>"
+      + document.getElementById("storeName").value
+      + "<br><br><b>RO#: </b>"
+      + document.getElementById("storeRO").value
+      + "<br><br><b>YEAR & VEHICLE: </b>"
+      + document.getElementById("storeYear").value
+      if(document.getElementById("storeMB").checked == true){
+        storageEmail = storageEmail + " Mercedes-Benz ";
+      }else if(document.getElementById("storeAMG").checked == true){
+        storageEmail = storageEmail + " Mercedes-AMG ";
+      }else{
+        storageEmail = storageEmail + " ";
+      }
+      storageEmail = storageEmail + document.getElementById("storeModel").value 
+      + "<br><br><b>TECH: </b>"
+      + document.getElementById("storeTech").value
+      + "<br><br><b>QUANTITY: </b>"
+      + document.getElementById("storeQ").value
+      + "<br><br><b>BRAND: </b>"
+      + document.getElementById("storeTB").value
+      + "<br><br><b>MODEL: </b>"
+      + document.getElementById("storeTM").value
+      + "<br><br><b>SIZE: </b>"
+      + document.getElementById("storeTW").value
+      + " / "
+      + document.getElementById("storeTR").value
+      + " R "
+      + document.getElementById("storeTD").value
+      + "<br><br><b>TREAD DEPTH: </b>RF: "
+      + parseFloat(document.getElementById("storerf").value).toFixed(1)
+      + "MM, LF: "
+      + parseFloat(document.getElementById("storelf").value).toFixed(1)
+      + "MM, RR: "
+      + parseFloat(document.getElementById("storerr").value).toFixed(1)
+      + "MM, LR: "
+      + parseFloat(document.getElementById("storelr").value).toFixed(1)
+      + "MM<br><br><b>RIMS: </b>";
+      if(document.getElementById("storeW").checked == true){
+        document.getElementById("storeS").hidden = false;
+        document.getElementById("storeC").hidden = false;
+        if(document.getElementById("storeS").checked == true){
+          storageEmail = storageEmail + "YES, STEEL";
+        }else if(document.getElementById("storeS").checked == false){
+          storageEmail = storageEmail + "YES, ALLOY";
+        }
+      }else if(document.getElementById("storeW").checked == false){
+        storageEmail = storageEmail + "NO";
+        document.getElementById("storeS").hidden = true;
+        document.getElementById("storeC").hidden = true;
+        document.getElementById("storeC").checked = false;
+      }
+      if(document.getElementById("storeC").checked == true){
+        storageEmail = storageEmail + "<br><br><b>CAPS: </b>YES";
+      }else{
+        storageEmail = storageEmail + "<br><br><b>CAPS: </b>NO";
+      }
+      storageEmail = storageEmail + "<br><br>";
+      document.getElementById("tirestorage").innerHTML = storageEmail.toUpperCase();
+    }
+
     </script>
   <script>//main page functions
     function PwordCheck(data){
@@ -2002,8 +2076,8 @@ Todo:
 						<label class="s1" for="drainPlug">Plastic Drain Plug&nbsp;</label>
 						<br>
 						<label class="s1">Brakes: </label>
-						<input type="text" id="fBrakes" name="fBrakes" size="5" placeholder="Fronts" maxlength="2">
-						<input type="text" id="rBrakes" name="rBrakes" size="5" placeholder="Rears" maxlength="2">
+						<input type="text" id="fBrakes" name="fBrakes" size="5" placeholder="Fronts" maxlength="4">
+						<input type="text" id="rBrakes" name="rBrakes" size="5" placeholder="Rears" maxlength="4">
 						&nbsp; &nbsp;
 						<label class="s1">Tires: </label>
 						<input type="text" id="rfTire" name="rfTire" size="4" placeholder="RF" maxlength="4">
@@ -3808,6 +3882,53 @@ Todo:
           </form>
           <s6 id="partsrequest"></s6>
 
+        <button class="button"; onclick="CopyToClipboard('tirestorage')">
+          TIRE STORAGE FORM
+          </button>&nbsp;&nbsp;<button class="button"; onclick="window.location.href='mailto:tirestorage@mbwinnipeg.ca';">Email</button> <br>
+          <form oninput="functionStorage()">
+            <input type="radio" id="storeSummers" name="storeSeason">
+            <label class="s1" for="storeSummers">Summers&nbsp;</label>
+            <input type="radio" id="storeWinters" name="storeSeason">
+            <label class="s1" for="storeWinters">Winters&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" id="storeRO" placeholder="RO #" size="10" maxlength="6">&nbsp;
+            <input type="text" id="storeName" placeholder="Customer Name" size="15">&nbsp;
+            <input type="text" id="storeTech" placeholder="Tech" size="3" value="110">&nbsp;&nbsp;&nbsp;
+            <input type="text" id="storeYear" placeholder="Year" size="5" maxlength="4">&nbsp;
+            <input type="radio" id="storeMB" name="storeBrand" checked>
+            <label class="s1" for="storeMB">Benz </label>
+            <input type="radio" id="storeAMG" name="storeBrand">
+            <label class="s1" for="storeAMG">AMG </label>
+            <input type="radio" id="storeOther" name="storeBrand">
+            <label class="s1" for="storeOther">Other </label>
+            <input type="text" id="storeModel" placeholder="Model" size="10">&nbsp;
+            <br>
+            <label class="s1">Tires: </label>
+            <input type="text" id="storeQ" placeholder="#" size="1" value="4" maxlength="1">&nbsp;
+            <input type="text" id="storeTB" placeholder="Brand" size="10">&nbsp;
+            <input type="text" id="storeTM" placeholder="Model" size="10">&nbsp;&nbsp;&nbsp;
+            <label class="s1">Size: </label>
+            <input type="text" id="storeTW" placeholder="Width" size="4" maxlength="3">
+            <label class="s1">/</label>
+            <input type="text" id="storeTR" placeholder="Ratio" size="4" maxlength="2">
+            <label class="s1">R</label>
+            <input type="text" id="storeTD" placeholder="Dia." size="4" maxlength="2">&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" id="storeW" name="storeW" checked>
+            <label class="s1" for="storeW">Wheels&nbsp;</label>
+            <input type="checkbox" id="storeS" name="storeS">
+            <label class="s1" for="storeS" id="storeS">Steel&nbsp;</label>
+            <input type="checkbox" id="storeC" name="storeC" checked>
+            <label class="s1" for="storeC" id="storeC">Caps&nbsp;</label>
+            <br>
+            <label class="s1">Measurements: </label>
+            <input type="text" id="storerf" name="storerfTire" placeholder="RF" size="5" maxlength="5">
+            <input type="text" id="storerr" name="storerrTire" placeholder="RR" size="5" maxlength="5">
+            <input type="text" id="storelr" name="storelrTire" placeholder="LR" size="5" maxlength="5">
+            <input type="text" id="storelf" name="storelfTire" placeholder="LF" size="5" maxlength="5">
+            &nbsp; &nbsp;						&nbsp; &nbsp;
+            <input type="reset" onclick="functionStorage()" value="Reset">
+          </form>
+          <s3e id="tirestorage"></s3e>
+
         <button class="button" onclick="CopyToClipboard('COPYPASTE')">
   				COPY-PASTE STORY
   				</button><br>
@@ -3831,7 +3952,7 @@ Todo:
 					</s1>
 
 
-    
+  
 
       </div>
 			<div class="bottomDiv" id="bottomDiv" style="display:block"> <!-- SCROLL BUTTONS -->
@@ -3934,7 +4055,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 15 Mar 2025</p></s3l>
+          Updated: 27 Mar 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
