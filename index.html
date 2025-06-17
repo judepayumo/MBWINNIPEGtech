@@ -1854,7 +1854,10 @@ Todo:
       var M274ENGINEThermostatP = "<br><br>Coolant<br>A2742003400 x 1 Thermostat<br>A2700960180 x 4 Charge air distributor seals<br>A0209977845 x 1 O-ring<br>A0249978045 x 1 O-ring";
       var M274ENGINEThermostatT = "<br><br>9  Nm Coolant thermostat to crankcase/head<br>9  Nm Charge air cooler to bracket<br>8  Nm Charge air cooler bracket to cylinder head<br>14 Nm Charge air distributor to cylinder head<br>AR09.41-P-131201MR Charge air distributor tightening procedure";
       var M274ENGINECrankvent = "LIFTED THE VEHICLE. DISCONNECTED BATTERY GROUND. REMOVED UPPER ENGINE COVER AND THREE CENTRE UNDERBODY COVERS. DRAINED COOLANT OF CHARGED AIR COOLER. REMOVED  ENGINE AIR FILTER HOUSING, ENGINE CONTROL UNIT AND BRACKET, INTERCOOLER AND BRACKET. DISCONNECTED AIR INTAKE LINES, OIL SEPARATOR LINES, AND EVAP LINES TO THROTTLE HOUSING. PARTIALLY REMOVED ENGINE DRIVE BELT AND UNFASTENED AC COMPRESSOR FROM THE CRANKCASE.  REMOVED LOWER LEFT ENGINE MOUNT BRACKET. REMOVED CRANKCASE VENT OIL SEPARATOR WITH FULL LOAD AND PARTIAL LOAD LINES. INSTALLED NEW CRANKCASE VENTILATION KIT (INCLUDES INTAKE LINE, PARTIAL LOAD VALVE, FULL LOAD LINE, AND OIL SEPARATOR). ASSEMBLED IN REVERSE ORDER. FILLED COOLING SYSTEM AND CONFIRMED LEVEL IS GOOD. CHECKED AND CONFIRMED ENGINE OIL LEVEL IS GOOD. CONNECTED XENTRY SCANNER. CLEARED FAULTS. PERFORMED FINAL QUICK TEST. CONFIRMED NO ACTIVE FAULTS. TEST DROVE THE VEHICLE. CONFIRMED CEL IS OFF.";
-
+      var M274ENGINEOilPump = "LIFTED THE VEHICLE AND REMOVED COMPLETE LOWER COVERS. DRAINED ENGINE OIL.  REMOVED UPPER ENGINE COVER AND AIR INTAKE DUCT. DISCONNECTED BATTERY GROUND AND REMOVED ENGINE CONTROL UNIT. PARTIALLY REMOVED CHARGE AIR COOLER. REMOVED ENGINE AIR FILTER HOUSING. REMOVED LEFT AND RIGHT ENGINE MOUNT SUPPORT BOLTS TO ENGINE MOUNTS. REMOVED BOTH FRONT WHEELS. SECURED STEERING WHEEL AND REMOVED STEERING RACK. DISCONNECTED LEFT AND RIGHT FRONT SUSPENSION FROM THE SUBFRAME AND REMOVED BOTH AXLES. ATTACHED ENGINE SUPPORT UNIT SLIGHTLY LIFTED THE ENGINE. REMOVED BOTTOM SECTION OF THE OIL PAN. REMOVED OIL SUCTION TUBE DIPSTICK TUBE. REMOVED UPPER OIL PAN. REMOVED ENGINE OIL PUMP. PRIMED NEW OIL PUMP AND INSTALLED. REMOVED OIL CONTROL VALVE SOLENOID HARNESS AND INSTALLED NEW HARNESS. CLEANED SEALING SURFACES AND APPLIED NEW RTV SEALANT. ASSEMBLED IN REVERSE ORDER AND TORQUED SUSPENSION TO SPEC AT RIDE HEIGHT. ADDED ENGINE OIL TO SPEC. STARTED THE ENGINE AND IDLED TO WARM UP. PERFORMED VISUAL INSPECTION AND CONFIRMED NO OIL LEAKS. PERFORMED TEST DRIVE. ";
+      var M274ENGINEOilSolenoid = "REMOVED UPPER ENGINE COVER AND LOOSENED OIL FILTER CAP. LIFTED THE VEHICLE AND REMOVED COMPLETE LOWER COVERS. DRAINED ENGINE OIL. REMOVED LOWER SECTION OF OIL PAN. REMOVED OIL SUCTION TUBE AND OIL LEVEL SWITCH. REMOVED OIL CONTROL SOLENOID AND REMOVED. REMOVED SHORT HARNESS. INSTALLED NEW HARNESS AND SOLENOID. CLEANED SEALING SURFACE AND APPLIED RTV PER WIS. ASSEMBLED IN REVERSE ORDER AND TORQUED TO SPEC. ADDED ENGINE OIL AND IDLED THE ENGINE TO WARM UP. LIFTED AND PERFORMED VISUAL INSPECTION. CONFIRMED NO OIL LEAKS. INSTALLED LOWER ENGINE COVER. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED QUICK TEST. CLEARED FAULTS AND PRINTED FINAL QUICK TEST. PERFORMED TEST DRIVE. CONFIRMED CEL IS OFF. ";
+      var M274ENGINEAlternator = "DISCONNECTED BATTERY GROUND. DRAINED COOLANT FROM THE LOW TEMP SYSTEM. REMOVED UPPER RAD COVER AND REMOVED FAN UNIT. REMOVED DRIVE BELT. REMOVED IDLER PULLEY ON THE ALTERNATOR HOUSING AND REMOVED BELT TENSIONER. DISCONNECTED COOLANT HOSES AT THE CHARGE AIR COOLER. DISCONNECTED ALTERNATOR ELECTRICAL CONNECTORS. REMOVED ALTERNATOR. INSTALLED NEW ALTERNATOR AND TORQUED TO SPEC IN STAGES. ASSEMBLED IN REVERSE ORDER. FILLED COOLING SYSTEM AND CONFIRMED NO LEAKS. STARTED THE ENGINE AND CONFIRMED VOLTAGE ALTERNATOR VOLTAGE OUTPUT IS GOOD. ";
+      var M274ENGINEAlternatorT = "<br><br><b>Torque Specs:</b><br><b>Stage 1:</b> 8Nm top, bottom<br><b>Stage 2:</b> 20 Nm top, bottom<br>"
       if (document.getElementById("M274ENGINESpark").checked == true) {
         var functionM274ENGINEResult = M274ENGINESpark;
       }
@@ -1877,6 +1880,16 @@ Todo:
       }
       if (document.getElementById("M274ENGINECrankvent").checked == true) {
         var functionM274ENGINEResult = M274ENGINECrankvent;
+      }
+      if (document.getElementById("M274ENGINEOilPump").checked == true) {
+        var functionM274ENGINEResult = M274ENGINEOilPump;
+      }
+      if (document.getElementById("M274ENGINEOilSolenoid").checked == true) {
+        var functionM274ENGINEResult = M274ENGINEOilSolenoid;
+      }
+      if (document.getElementById("M274ENGINEAlternator").checked == true) {
+        var functionM274ENGINEResult = M274ENGINEAlternator;
+        var functionM274ENGINETorqueResult = M274ENGINEAlternatorT;
       }
       document.getElementById("M274ENGINE").innerHTML = functionM274ENGINEResult;
       document.getElementById("M274ENGINEParts").innerHTML = functionM274ENGINEPartsResult;
@@ -2026,7 +2039,7 @@ Todo:
       <img src="https://customerracing.mercedes-amg.com/amg-logo.svg" class="topBannerLogo" onclick="mecheck()">
       <div class="shortcutDiv"> <!--SHORTCUTS-->
         <a href="https://xentry.mercedes-benz.com/home/" target="_blank"><i class="fa fa-home"></i>&nbsp&nbsp&nbsp;</a>
-        <a href="https://xentry.mercedes-benz.com/workshop/#/order-overview/Local-Content" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp&nbsp&nbsp;</a>
+        <a href="https://retail-platform.i.mercedes-benz.com/spaces/84234/documents" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp&nbsp&nbsp;</a>
         <a href="https://retailfactory.mercedes-benz.com/iri-gui/" target="_blank"><i class="fa fa-diamond"></i>&nbsp&nbsp&nbsp;</a>
         <a href="https://xentry.mercedes-benz.com/xhpi/" target="_blank"><i class="fa fa-cubes"></i>&nbsp&nbsp&nbsp;</a>
         <a href="https://outlook.live.com/mail/0/inbox?nlp=1" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp&nbsp&nbsp;</a>
@@ -2829,6 +2842,12 @@ Todo:
 						<label class="s1" for="M274ENGINEThermostat">Thermostat&emsp;</label>
             <input type="radio" id="M274ENGINECrankvent" name="M274ENGINE">
 						<label class="s1" for="M274ENGINECrankvent">Crankcase Vent&emsp;</label>
+            <input type="radio" id="M274ENGINEOilPump" name="M274ENGINE">
+						<label class="s1" for="M274ENGINEOilPump">Oil Pump&emsp;</label>
+            <input type="radio" id="M274ENGINEOilSolenoid" name="M274ENGINE">
+						<label class="s1" for="M274ENGINEOilSolenoid">Oil Control Solenoid&emsp;</label>
+            <input type="radio" id="M274ENGINEAlternator" name="M274ENGINE">
+						<label class="s1" for="M274ENGINEAlternator">Alternator&emsp;</label>
 					</form>
 					<s1 id="M274ENGINE";></s1>
           <s3 id="M274ENGINEParts";></s3>
@@ -3076,7 +3095,7 @@ Todo:
 						<input type="radio" value="2022080011" id="2022080011Form" name="recallNumber">
 						<label class="s1" for="2022080011Form">2022080011&nbsp;</label>
 					</form>
-          <s1 id="20220800112022080010";>AS PER MB SERVICE CAMPAIGN <s1 id="20220800112022080010a">2022080010</s1>, ENGINE CONTROL UNIT SOFTWARE MUST BE UPDATED TO ENSURE CATALYST HEATING IS WORKING CORRECTLY. CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF ENGINE ELECTRONICS (ME). DISCONNECTED XENTRY AND CHARGER.</s1>
+          <s1 id="20220800112022080010";>PER MBC SERVICE CAMPAIGN <s1 id="20220800112022080010a">2022080010</s1>, ENGINE CONTROL UNIT SOFTWARE MUST BE UPDATED TO ENSURE CATALYST HEATING IS WORKING CORRECTLY. CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF ENGINE ELECTRONICS (ME). DISCONNECTED XENTRY AND CHARGER.</s1>
 
         <span class="a"></span>
 
@@ -3087,6 +3106,10 @@ Todo:
 						<label class="s1" for="2023080002Form">2023080002&nbsp;</label>
 						<input type="radio" value="2024090002" id="2024090002Form" name="recallNumber">
 						<label class="s1" for="2024090002Form">2024090002&nbsp;</label>
+            <input type="radio" value="2025040002" id="2025040002Form" name="recallNumber">
+						<label class="s1" for="2025040002Form">2025040002&nbsp;</label>
+            <input type="radio" value="2025040001" id="2025040001Form" name="recallNumber">
+						<label class="s1" for="2025040001Form">2025040001&nbsp;</label>
 					</form>
 					<s1 id="20230800022024090002";>PER MBC CAMPAIGN <s1 id="20230800022024090002a">2023080002</s1> THE SOFTWARE OF THE ENGINE CONTROL UNIT MIGHT NOT MEET SPECIFICATIONS. CONNECTED XENTRY SCANNER AND BATTERY CHARGER. PERFORMED <b>ENGINE CONTROL UNIT SOFTWARE UPDATE</b>.</s1>
 
@@ -3810,9 +3833,15 @@ Todo:
             
           <span class="a"></span>
 
-        <button class="button"; onclick="CopyToClipboard('2023100003')">
-          TIGHTNESS OF TRANSMISSION WIRING HARNESS CONNECTOR 1.6H</button><br>
-            <s1 id="2024100002">PER MBC RECALL CAMPAIGN 2024100002, THE ELECTRICAL CONNECTOR OF THE TRANSMISSION WIRING HARNESS MIGHT NOT HAVE BEEN CORRECTLY REMEDIED. <br> DISCONNECTED 12V BATTERY GROUND. LIFTED THE VEHICLE AND REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DISCONNECTED ELECTRICAL CONNECTOR AT TRANSFER CASE CONTROL UNIT. REMOVED WIRING HARNESS FROM X279 TO N45. PERFORMED MODIFICATION TO WIRING AS DETAILED IN THE RECALL DOCUMENT. ASSEMBLED IN REVERSE ORDER. </s1>
+        <button class="button"; onclick="CopyToClipboard('2024100002')">
+          TIGHTNESS OF TRANSMISSION WIRING HARNESS CONNECTOR 1.6H (+0.6 Underbody Protection)</button><br>
+          <form oninput="recallNumberSelect(recallNumber,'20241000022024100003')">
+            <input type="radio" checked value="2024100002" id="2024100002Form" name="recallNumber">
+            <label class="s1" for="2024100002Form">2024100002&nbsp;</label>
+            <input type="radio" value="2024100003" id="2024100003Form" name="recallNumber">
+            <label class="s1" for="2024100003Form">2024100003&nbsp;</label>
+          </form>
+            <s1 id="2024100002">PER MBC RECALL CAMPAIGN <s1 id="20241000022024100003">2024100003</s1>, THE ELECTRICAL CONNECTOR OF THE TRANSMISSION WIRING HARNESS MIGHT NOT HAVE BEEN CORRECTLY REMEDIED. <br> DISCONNECTED 12V BATTERY GROUND. LIFTED THE VEHICLE AND REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DISCONNECTED ELECTRICAL CONNECTOR AT TRANSFER CASE CONTROL UNIT. REMOVED WIRING HARNESS FROM X279 TO N45. PERFORMED MODIFICATION TO WIRING AS DETAILED IN THE CAMPAIGN DOCUMENT. ASSEMBLED IN REVERSE ORDER. </s1>
             
           <span class="a"></span>
 
@@ -4055,7 +4084,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 27 Mar 2025</p></s3l>
+          Updated: 16 Jun 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
