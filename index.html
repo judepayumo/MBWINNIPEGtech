@@ -2049,6 +2049,42 @@ Todo:
       document.getElementById("M177ls2ENGINET").innerHTML = functionM177ls2ENGINET;
     }
 </script>
+  <script>//function MODELS
+  function functionModelTemplate(){
+      var functionModelResult = "";  //leave blank
+      var functionModelTorqueResult = ""; //leave blank
+      var functionModelPartsResult = ""; //leave blank
+      var ModelOption1 = "Option 1 story";
+      var ModelOption1T = "Option 1 Torque"
+      var ModelOption1P = "Option 1 Parts"
+      if (document.getElementById("ModelOption1InMainStory").checked == true) {
+        var functionModelResult = ModelOption1;
+        var functionModelTorqueResult = ModelOption1T;
+        var functionModelPartsResult = ModelOption1P;
+      }
+      document.getElementById("MENGINEidInMainStory").innerHTML = functionModelResult;
+      document.getElementById("MENGINEidInMainStoryParts").innerHTML = functionModelPartsResult;
+      document.getElementById("MENGINEidInMainStoryTorque").innerHTML = functionModelTorqueResult;
+    }
+  function functionModel463(){
+      var functionModelResult = "";  //leave blank
+      var functionModelTorqueResult = ""; //leave blank
+      var functionModelPartsResult = ""; //leave blank
+      var Model463Radiator = "REMOVED UPPER ENGINE COVER. CONNECTED AC MACHINE AND RECOVERED AC REFRIGERANT. LIFTED THE VEHICLE AND REMOVED COMPLETE LOWER COVERS. DRAINED HIGH TEMP COOLANT. DRAINED LOW TEMP COOLANT. REMOVED RADIATOR UPPER CROSSMEMBER. DISCONNECTED ELECTRICAL CONNECTORS FOR HOOD LATCHES. REMOVED AIR DUCT SEGMENTS OF COLD AIR INTAKE. DISCONNECTED COOLANT HOSES AND AC REFRIGERANT HOSES CONNECTED TO THE COOLERS. DISCONNECTED FAN UNIT. REMOVED COOLER MODULE WITH FAN UNIT. REMOVED MAIN RADIATOR FROM THE COOLER MODULE. INSTALLED NEW RADIATOR. ASSEMBLED IN REVERSE ORDER. CONNECTED AC MACHINE AND PERFORMED VACUUM, LEAK TEST, AND CHARGING OF REFRIGERANT. ADDED AC OIL. CONNECTED VACUUM COOLANT FILLER AND FILLED LOW TEMP AND HIGH TEMP COOLING SYSTEMS. CONNECTED COOLANT PRESSURE TESTER AND PRESSURIZED BOTH SYSTEMS. CONFIRMED NO LEAKS VIA VISUAL INSPECTION. CONNECTED XENTRY AND BATTER CHARGER. PERFORMED COOLANT BLEEDING PROCEDURES. CLEARED FAULTS AND PRINTED FINAL QUICK TEST. ";
+      var Model463RadiatorT = "<br><br><b>Torque Specifications:</b><br>"
+      var Model463RadiatorP = "<br><br><b>Parts List:</b><br>10 clips for air duct section of cold air intake <br>AC refigerant <br>AC condenser seals <br>2 coolant jugs"
+      if (document.getElementById("G463Radiator").checked == true) {
+        var functionModelResult = Model463Radiator;
+        var functionModelTorqueResult = Model463RadiatorT;
+        var functionModelPartsResult = Model463RadiatorP;
+      }
+      document.getElementById("Model463").innerHTML = functionModelResult;
+      document.getElementById("Model463P").innerHTML = functionModelPartsResult;
+      document.getElementById("Model463T").innerHTML = functionModelTorqueResult;
+    }
+
+
+  </script>
   <script>// test area 2
 
   //event.preventDefault();
@@ -2683,6 +2719,18 @@ Todo:
             LIFTED THE VEHICLE AND PLACED IN NEUTRAL. REMOVED EXHAUST SYSTEM, HEAT SHIELDS, AND DRIVESHAFT. DISCONNECTED BATTERY GROUND. DISCONNECTED FUEL LINES BY FUEL TANK, FUEL TANK ELECTRICAL CONNECTORS. REMOVED CHARCOAL CANISTER. REMOVED FUEL TANK. <br> <br>INSTALLED NEW FUEL PUMP IN NEW FUEL TANK. <br><br>ASSEMBLED IN REVERSE ORDER. TRANSFERRED OVER FUEL FROM OLD FUEL TANK. STARTED THE ENGINE. CONNECTED XENTRY AND PERFORMED QUICK TEST. CLEARED FAULTS AND PRINTED FINAL QUICK TEST. TEST DROVE THE VEHICLE.</s1>
 
 				<span class="a"></span>
+
+        <button class="button"; onclick="CopyToClipboard('Model463')">
+          Model 463 G-Wagon</button><br>
+          <form oninput="functionModel463()">
+            <input type="Radio" id="G463Radiator" name="MModel463">
+            <label class="s1" for="G463Radiator">463.277 177980 Radiator&emsp;</label>
+          </form>
+          <s1 id="Model463"></s1><br>
+          <s3 id="Model463T"></s3>
+          <s3 id="Model463P"></s3>
+
+        <span class="a"></span>
 
         <button class="button"; onclick="CopyToClipboard('M133ENGINE')">
 					M133 ENGINE</button>&nbsp&nbsp<button class="button"; onclick="CopyToClipboard('M133ENGINEP')">
@@ -4006,7 +4054,13 @@ Todo:
         <button class="button" onclick="CopyToClipboard('myvin')">
   				My VIN
   				</button><br>
-          <s1><b>CLA250: </b>WDDSJ4GB1GN288750<br><b>GLA45: </b>WDDTG5CB7HJ291465</s1>
+          <s1>
+            <b>CLA250: </b>WDDSJ4GB1GN288750<br>
+            <b>GLA45:  </b>WDDTG5CB7HJ291465<br>
+            <b>E550:   </b>WDDHF9BB1EA801841<br>
+            <b>F150:   </b>1FTEW1E48KKC72616<br>
+            <b>RX350:  </b>2T2BK1BA6BC084716<br>
+          </s1>
 
         <span class="a"></span>
 
@@ -4122,7 +4176,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 20 Aug 2025 - temp 272724</p></s3l>
+          Updated: 18 Sep 2025</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
