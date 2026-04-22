@@ -1772,6 +1772,30 @@ Todo:
       document.getElementById("M270ENGINEParts").innerHTML = functionM270ENGINEPartsResult;
       document.getElementById("M270ENGINETorque").innerHTML = functionM270ENGINETorqueResult;
     }
+    function functionM113ENGINE(){
+      var functionM113ENGINEResult = "";
+      var functionM113ENGINEPResult = "";
+      var functionM113ENGINETResult = "";
+      var M113ENGINEValveCover = "REMOVED UPPER ENGINE COVER. REMOVED AIR FILTER HOUSING. CLEANED AREA OF WORK. REMOVED IGNITION COILS. DISCONNECTED FUEL FEED LINE TO DISTRIBUTOR. REMOVED CYLINDER HEAD COVER. INSTALLED NEW GASKET AND TORQUED CYLINDER HEAD COVERS TO SPEC. ASSEMBLED IN REVERSE ORDER. ";
+      var M113ENGINEValveCoverP = "<br><br><b>Parts: <br></b>Quote ruber pcv hoses, gaskets, RTV";
+      var M113ENGINEValveCoverT = "<br><br><b>Torque Specs:</b><br>8 Nm Ignition coil to cover<br>9 Nm Cylinder head cover bolts";
+      var M113ENGINERearMain = "LIFTED THE VEHICLE AND PLACED IN NEUTRAL. DISCONNECTED BATTERY GROUND. REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DISCONNECTED ALL EXHAUST O2 SENSORS. REMOVED COMPLETE EXHAUST. DISCONNECTED TRANSMISSION ELECTRICAL CONNECTOR AND SHIFT ROD. UNFASTENED TORQUE CONVERTER FROM THE DRIVE PLATE. REMOVED STARTER. REMOVED COMPLETE TRANSMISSION. REMOVED REAR MAIN SEAL. INSTALLED NEW REAR MAIN SEAL. ASSEMBLED IN REVERSE ORDER. PERFORMED UNDERBODY WASH. PERFORMED TEST DRIVE. LIFTED THE VEHICLE AND CONFIRMED NO LEAKS. RE-INSTALLED COVERS.";
+      var M113ENGINERearMainP = "<br><br><b>Parts: <br></b>A0009944160, A0199975845 x 2, torque converter bolts, crankshaft rear main seal, engine shampoo";
+      var M113ENGINERearMainT = "<br><br><b>Torque Specs:</b><br><b>Torque converter to drive plate:</b><br>42 Nm M8 straight threaded connection<br>4 Nm, 30 Nm, 90 deg, Angled threaded connection<br><br>40 Nm starter to crankcase<br>38 Nm Transmission to engine<br>12 Nm Bolts Transmission cooler lines";
+      if (document.getElementById("M113ENGINERearMain").checked == true) {
+        var functionM113ENGINEResult = M113ENGINERearMain;
+        var functionM113ENGINEPResult = M113ENGINERearMainP;
+        var functionM113ENGINETResult = M113ENGINERearMainT;
+      }
+      if (document.getElementById("M113ENGINEValveCover").checked == true) {
+        var functionM113ENGINEResult = M113ENGINEValveCover;
+        var functionM113ENGINEPResult = M113ENGINEValveCoverP;
+        var functionM113ENGINETResult = M113ENGINEValveCoverT;
+      }
+      document.getElementById("M113ENGINE").innerHTML = functionM113ENGINEResult;
+      document.getElementById("M113ENGINEP").innerHTML = functionM113ENGINEPResult;
+      document.getElementById("M113ENGINET").innerHTML = functionM113ENGINETResult;
+    }
     function functionM133ENGINE(){
       var functionM133ENGINEResult = "";
       var functionM133ENGINEPResult = "";
@@ -2755,6 +2779,21 @@ Todo:
 
         <span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('M113ENGINE')">
+					M113 ENGINE</button>&nbsp&nbsp<button class="button"; onclick="CopyToClipboard('M113ENGINEP')">
+            COPY PARTS</button><br><br>
+					<form oninput="functionM113ENGINE()">
+						<input type="radio" id="M113ENGINERearMain" name="M113ENGINE">
+						<label class="s1" for="M113ENGINERearMain">Rear Main 171.4-113.9&emsp;</label>
+            <input type="radio" id="M113ENGINEValveCover" name="M113ENGINE">
+						<label class="s1" for="M113ENGINEValveCover">Valve Cover 113.9&emsp;</label>
+					</form>
+					<s1 id="M113ENGINE";></s1>
+          <s3 id="M113ENGINEP";></s3>
+          <s3 id="M113ENGINET";></s3>
+
+        <span class="a"></span>
+
         <button class="button"; onclick="CopyToClipboard('M133ENGINE')">
 					M133 ENGINE</button>&nbsp&nbsp<button class="button"; onclick="CopyToClipboard('M133ENGINEP')">
             COPY PARTS</button><br><br>
@@ -3079,7 +3118,7 @@ Todo:
           <s3 id="FieldMeasureSpecs";></s3>
       </div> <!--main story-->
       <div class="newSecondaryDiv" id="RclDiv"> <!-- ***************************************** RECALL STORIES ******************************************** -->
-        <s2>Recalls</s2><br>
+        <s2>Recalls & Service Actions</s2><br>
         <button class="button"; onclick="CopyToClipboard('2020030008A')">
 					X204 DRIVER AND PASSENGER AIRBAG RECALL 1.0H</button><br>
 					<form oninput=recallNumberSelect(parsScan,"2020030008Ascan")>
@@ -3194,6 +3233,28 @@ Todo:
 
 				<span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('2026010003')">
+          DRIVETRAIN CONTROL UNIT SOFWARE 0.3H</button><br>
+          <form oninput=recallNumberSelect(recallNumber,"20190300132026010003")>
+						<input type="radio" checked value="xxxx" id="xxxxForm" name="recallNumber">
+						<label class="s1" for="xxxxForm">xxxx&nbsp;</label>
+					  <input type="radio" value="2026010003" id="2026010003Form" name="recallNumber">
+						<label class="s1" for="2026010003Form">2026010003&nbsp;</label>
+					</form>
+          <s1 id="2026010003";>PER MB RECALL CAMPAIGN <s1 id="20190300132026010003">2026010003</s1>, THE DRIVETRAIN CONTROL UNIT SOFTWARE DOES NOT CORRESPOND TO THE LATEST SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF POWER TRAIN CONTROL UNIT (N127, PTCU). DISCONNECTED XENTRY.</s1>
+        
+        <span class="a"></span>
+
+        <button class="button"; onclick="CopyToClipboard('2024090006')">
+          DRIVETRAIN CONTROL UNIT SOFWARE 0.3H - 1.3H</button><br>
+          <form oninput=recallNumberSelect(recallNumber,"20190300132026010003")>
+						<input type="radio" checked value="2024090006" id="2024090006Form" name="recallNumber">
+						<label class="s1" for="2024090006Form">2024090006&nbsp;</label>
+					</form>
+          <s1 id="2024090006";>PER MB RECALL CAMPAIGN <s1 id="20190300132026010003">2024090006</s1>, THE DRIVETRAIN CONTROL UNIT SOFTWARE DOES NOT CORRESPOND TO THE LATEST SERIES PRODUCTION CONFIGURATION.<br> CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF POWER TRAIN CONTROL UNIT (N127, PTCU). PERFORMED STANDSTILL ADAPTATION OF TRANSMISSION CONTROL UNIT. PERFORMED TEACH-IN OF POWER ELECTRONICS POSITION SENSOR (N147/2). PERFORMED QUICK TEST AND CLEARED FAULT MEMORY. DISCONNECTED XENTRY AND PERFORMED TEST DRIVE.</s1>
+        
+        <span class="a"></span>
+
 				<button class="button"; onclick="CopyToClipboard('20190400042022120002')">
 					N3/9 ME SOFTWARE UPDATE RECALL 0.3H</button><br>
           <form oninput=recallNumberSelect(recallNumber,"20190400042022120002a")>
@@ -3229,6 +3290,10 @@ Todo:
 						<label class="s1" for="2025040002Form">2025040002&nbsp;</label>
             <input type="radio" value="2025040001" id="2025040001Form" name="recallNumber">
 						<label class="s1" for="2025040001Form">2025040001&nbsp;</label>
+            <input type="radio" value="2025100004" id="2025100004Form" name="recallNumber">
+						<label class="s1" for="2025100004Form">2025100004&nbsp;</label>
+            <input type="radio" value="2025040012" id="2025040012Form" name="recallNumber">
+						<label class="s1" for="2025040012Form">2025040012&nbsp;</label>
 					</form>
 					<s1 id="20230800022024090002";>PER MBC CAMPAIGN <s1 id="20230800022024090002a">2023080002</s1> THE SOFTWARE OF THE ENGINE CONTROL UNIT MIGHT NOT MEET SPECIFICATIONS. CONNECTED XENTRY SCANNER AND BATTERY CHARGER. PERFORMED <b>ENGINE CONTROL UNIT SOFTWARE UPDATE</b>.</s1>
 
@@ -3407,6 +3472,22 @@ Todo:
 
 				<span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('2021020001')">
+					SRS SOFTWARE UPDATE 0.3H</button><br>
+					<s1 id="2021020001";>
+						AS PER MB RECALL CAMPAIGN 2021020001 , THE SOFTWARE OF SUPPLEMENTAL RESTRAINT SYSTEM (SRS) MAY NOT CORRESPOND TO THE CURRENT SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY SCAN TOOL AND BATTERY CHARGER. UPDATED THE <b>SOFTWARE OF SRS CONTROL UNIT (N2/10) UNDER CONFIGURATION - MANUAL SETTINGS - ACTION 1380 2020 0296.</b>
+					</s1>
+
+				<span class="a"></span>
+
+        <button class="button"; onclick="CopyToClipboard('SRS CONTROL UNIT SOFTWARE')">
+					SRS SOFTWARE UPDATE 0.3H</button><br>
+					<s1 id="SRS CONTROL UNIT SOFTWARE";>
+						PER SERVICE ACTION 20225070007, MERCEDES-BENZ AG WILL OPTIMIZE THE OPERATING SYSTEM AND IMPROVE THE CHARGING EXPERIENCE VIA A SOFTWARE UPDATE. CONNECTED BATTERY CHARGER AND XENTRY. PERFORMED QUICK TEST. UPDATED SUPPLEMENTAL RESTRAINT SYSTEM (SRS) CONTROL UNIT SOFTWARE. DISCONNECTED.</b>
+					</s1>
+
+				<span class="a"></span>
+
 				<button class="button"; onclick="CopyToClipboard('20200800032024030005')">
 					VGS TRANSMISSION SOFTWARE UPDATE 0.3H
 					</button><br>
@@ -3490,14 +3571,6 @@ Todo:
 					ESP SCN UPDATE 0.3H</button><br>
 					<s1 id="2022070003";>
 						AS PER MB SERVICE ACTION 2022070003, CODING OF THE ESP CONTROL UNIT DOES NOT CORRESPOND TO THE CURRENT SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY SCAN TOOL AND BATTERY CHARGER. PERFORMED <b>SCN UPDATE OF ESP CONTROL UNIT (N30/4).</b>
-					</s1>
-
-				<span class="a"></span>
-
-				<button class="button"; onclick="CopyToClipboard('2021020001')">
-					SRS SOFTWARE UPDATE 0.3H</button><br>
-					<s1 id="2021020001";>
-						AS PER MB RECALL CAMPAIGN 2021020001 , THE SOFTWARE OF SUPPLEMENTAL RESTRAINT SYSTEM (SRS) MAY NOT CORRESPOND TO THE CURRENT SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY SCAN TOOL AND BATTERY CHARGER. UPDATED THE <b>SOFTWARE OF SRS CONTROL UNIT (N2/10) UNDER CONFIGURATION - MANUAL SETTINGS - ACTION 1380 2020 0296.</b>
 					</s1>
 
 				<span class="a"></span>
@@ -3898,12 +3971,6 @@ Todo:
 
         <span class="a"></span>
 
-        <button class="button"; onclick="CopyToClipboard('2024090006')">
-          DRIVETRAIN CONTROL UNIT SOFWARE 0.3H - 1.3H</button><br>
-          <s1 id="2024090006">PER MBC CAMPAIGN 2024090006, THE DRIVETRAIN CONTROL UNIT SOFTWARE DOES NOT CORRESPOND TO THE LATEST SERIES PRODUCTION CONFIGURATION.<br> CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF POWER TRAIN CONTROL UNIT (N127, PTCU). PERFORMED STANDSTILL ADAPTATION OF TRANSMISSION CONTROL UNIT. PERFORMED TEACH-IN OF POWER ELECTRONICS POSITION SENSOR (N147/2). PERFORMED QUICK TEST AND CLEARED FAULT MEMORY. PRINTED FINAL QUICK TEST. DISCONNECTED XENTRY AND PERFORMED TRANSMISSION TEST DRIVE.</s1>
-        
-        <span class="a"></span>
-
         <button class="button"; onclick="CopyToClipboard('2024080004')">
         UPDATE FUEL SYSTEM CONTROL UNIT (FSCU 10) SOFTWARE 0.3H</button><br>
           <s1 id="2024080004">PER MBC CAMPAIGN 2024080004, THE FUEL SYSTEM CONTROL UNIT (FSCU 10) SOFTWARE MAY NOT CORRESPOND TO CURRENT SERIES PRODUCTION CONFIGURATION. <br>CONNECTED XENTRY DIAGNOSIS AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF N118/3 FUEL SYSTEM CONTROL UNIT (FSCU 10). DISCONNECTED. 
@@ -3988,7 +4055,21 @@ Todo:
 
 				<span class="a"></span>
 
+        <button class="button"; onclick="CopyToClipboard('2025020007')">
+					RETROFIT INFORMATION LABEL IN CHARGING PORT 0.1H</button><br>
+					<s1 id="2025020007";>
+            MERCEDES-BENZ AG HAS DETERMINED THAT THE LABEL FOR THE USE OF NACS CHARGING ADAPTERS DOES NOT CORRESPOND TO THE CURRENT SERIES PRODUCTION CONFIGURATION. CLEANED BONDING AREA. ATTACHED INFORMATION LABEL FOR NACS ADAPTER. 
+					</s1>
 
+				<span class="a"></span>
+
+        <button class="button"; onclick="CopyToClipboard('2025110009')">
+					CHARGING MANAGEMENT SYSTEM SOFTWARE UPDATE 0.3H</button><br>
+					<s1 id="2025110009";>
+            PER MAC CAMPAIGN 2025110009, MERCEDES-BENZ AG HAS DETERMINED THAT THE SOFTWARE FOR THE DC CHARGE-CONNECTION UNIT CONTROL UNIT (DCCU) DOES NOT CORRESPOND TO THE SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF N116/5 DCCU. CLEARED FAULTS. DISCONNECTED.
+					</s1>
+
+				<span class="a"></span>
 
 
       </div> <!--Recall story story-->
@@ -4228,7 +4309,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 16 Apr 2026 Temp Story</p></s3l>
+          Updated: 22 April 2026</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
