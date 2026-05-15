@@ -187,6 +187,7 @@
     <option value="Honda">Honda</option>
     <option value="Mercedes-AMG">Mercedes-AMG</option>
     <option value="Mercedes-Benz">Mercedes-Benz</option>
+    <option value="Volkswagen">Volkswagen</option>
   </select>
 </section>
 
@@ -209,7 +210,7 @@
 </div>
 
 <footer class="disclaimer">
-  Prices do not include applicable taxes. Vehicles marked “Private Sale - No GST” are exempt from GST. <br> Updated 11 May 2026
+  Prices do not include applicable taxes. Vehicles marked “Private Sale - No GST” are exempt from GST. <br> Updated 14 May 2026 
 </footer>
 
 <!-- template
@@ -237,6 +238,44 @@
 
 <script>
 const cars = [
+
+  {
+    id: 00008,
+    dateAdded: "2025-11-11", //yyyy-mm-dd
+    brand: "Mercedes-Benz",
+    title: "1995 Mercedes-Benz C220",
+    price: 5400,
+    mileage: "86,000 km",
+    exterior: "Beige",
+    interior: "Black",
+    engine: "Naturally Aspirated 2.2L inline-four",
+    transmission: "Automatic",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/555105277_3311942782287149_1685908492187583807_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=946e27&_nc_ohc=FmlwvNxRJMYQ7kNvwHcMGnA&_nc_oc=Adp6PeAF0Yr5m4WXdt7fz8Yp5B2lUCkOVnhEh-3Y7AJg7HwtiMPFkM4VxKjYSKZWroWRqCPj6IkBysjSdVM1YvRg&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=8d7GEwjK94tClGg8RAWlhg&_nc_ss=7b2a8&oh=00_Af4u6Xg0mwHJKWN1ROsK5aUCuIE_NsMzbjAyuxZLMYipBQ&oe=6A0C4FDB",
+    details: "Rare opportunity to own a beautifully preserved 1995 Mercedes‑Benz C220 in collector condition. This car combines classic Mercedes engineering, clean styling, and exceptional care. Perfect for enthusiasts, collectors, or anyone who appreciates timeless quality.",
+    sold: true,
+    privateSale: false,
+    incomingVeh: false,
+    contactUrl: "https://www.facebook.com/marketplace/item/2944443715741055/?mibextid=wwXIfr",
+    },
+
+   {
+    id: 00007,
+    dateAdded: "2024-04-11", //yyyy-mm-dd
+    brand: "Volkswagen",
+    title: "2015 Volkswagen Gold GTI",
+    price: 17550,
+    mileage: "175,000 km",
+    exterior: "White",
+    interior: "Black",
+    engine: "Turbocharged 2.0L inline-four",
+    transmission: "Automatic",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/490641261_3124148547733241_3636333490258453752_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=111&ccb=1-7&_nc_sid=946e27&_nc_ohc=NYh4Br960pwQ7kNvwEST0Eg&_nc_oc=AdoWuySJ7MKmLVe6HfgoM8J-7XSHSe7xPyvvIRIdi_NhpVw4HQ_OaHPid0CKPEd28CRPIVhUXjGev8dsmyCCISiU&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=z5tzaj7-SW3EYEJZQK-XGQ&_nc_ss=7b2a8&oh=00_Af6yAL7lfTrTBQZLU8N0chbACz6pPa7asBsFAML4Njrv4Q&oe=6A0C46E8",
+    details: "Vehicle has an IS38 OEM turbo on board ( Golf R )( Brand New) FULLY LOADED WITH SUNROOF, KEYLESS , SOUND SYSTEM, HEATED SEATS, DSG , RAIN SENSOR, CRUSE CONTROL, LEATHER SEATS .",
+    sold: true,
+    privateSale: false,
+    incomingVeh: false,
+    contactUrl: "https://www.facebook.com/marketplace/item/1503341577076082/?mibextid=wwXIfr",
+ },  
 
    {
     id: 00007,
