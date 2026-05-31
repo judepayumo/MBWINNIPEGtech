@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parts</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { padding-top: 80px; background: #b8b8b8; color: #222; }
+
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 80px;
+      background: #111;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 { font-size: 22px; }
+
+    .disclaimer {
+      max-width: 1200px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+      font-size: 12px;
+      color: #2a2a2a;
+      text-align: center;
+    }   
+
+    .controls {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .controls input, .controls select {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .controls input { flex: 1; min-width: 220px; }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .car-card {
+      position: relative;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .car-card:hover { transform: translateY(-4px); }
+
+    .car-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body { padding: 14px; }
+    .car-title { font-size: 17px; font-weight: bold; margin-bottom: 6px; }
+    .car-price { color: #0f8a5f; font-weight: bold; margin-bottom: 8px; }
+    .car-price.sold { color: #c62828; }
+    .car-meta { font-size: 13px; color: #666; }
+    .private-badge {
+      position: absolute;
+      top: 30px;
+      left: -38px;
+      background: #c62828;
+      color: white;
+      padding: 6px 48px;
+      font-size: 12px;
+      font-weight: bold;
+      transform: rotate(-35deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    .incoming-badge {
+      position: absolute;
+      top: 30px;
+      left: -38px;
+      background: #383838;
+      color: white;
+      padding: 6px 48px;
+      font-size: 14px;
+      font-weight: bold;
+      transform: rotate(-35deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .modal-title { font-size: 24px; font-weight: bold; }
+    .modal-price { font-size: 20px; color: #0f8a5f; margin: 8px 0 12px; }
+    .modal-price.sold { color: #c62828; }
+    .modal-specs { margin-bottom: 14px; color: #555; }
+    .modal-details { line-height: 1.6; color: #333; margin: 8px 0 12px;}
+
+    .contact-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 20px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .nav-menu {
+      position: relative;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: relative;
+      right: 0;
+      top: 35px;
+      min-width: 180px;
+
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <!--<h1>Vehicles</h1><h1>Parts</h1>-->
+  <div class="nav-menu">
+  <button class="menu-button" onclick="toggleMenu()">
+    ☰ Menu
+  </button>
+
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="https://mercedes-amg.tech/Listing.html">Vehicles</a>
+    <a href="https://mercedes-amg.tech/Parts.html">Parts</a>
+    <a href="https://payumo.ca/pic1.jpeg">Contact</a>
+  </div>
+</div>
+</header>
+
+
+
+<section class="controls">
+  <input type="text" id="searchInput" placeholder="Search" />
+  <select id="brandFilter">
+    <option value="all">All</option>
+    <option value="Brakes">Brakes</option>
+    <option value="Interior">Interior</option>
+    <option value="Wheels and Tires">Wheels and Tires</option>
+  </select>
+</section>
+
+<div class="container" id="carContainer"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img id="modal-image" src="" alt="Vehicle image" />
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-price" id="modal-price"></div>
+    <div class="modal-specs" id="modal-specs"></div>
+    <div class="modal-details" id="modal-details"></div>
+    <a id="contact-button" class="contact-btn" href="#" target="_blank" rel="noopener noreferrer">More info</a>
+  </div>
+</div>
+
+<footer class="disclaimer">
+Updated 30 May 2026 test 
+</footer>
+
+<!-- template
+   {
+    id: 0000#,
+    dateAdded: "2026-04-11", //yyyy-mm-dd
+    brand: "Mercedes-Benz",
+    title: "2012 Mercedes-Benz",
+    price: 8500,
+    category: "Category",
+    image: "https://www.payumo.ca/placeholder.jpeg",
+    details: "Details.",
+    sold: false,
+    contactUrl: "http://www.example.com",
+  },
+  
+  
+  -->
+
+<script>
+const cars = [
+  {
+    id: 00008,
+    dateAdded: "2025-04-13", //yyyy-mm-dd
+    brand: "K&N",
+    title: "K&N Air Intake for M270",
+    price: 100,
+    category: "Mods",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/515899459_740449018363353_6505372550437251024_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=247b10&_nc_ohc=L2jL55305tcQ7kNvwGyEvI0&_nc_oc=AdoADFTmQExPU4wKiL7nx9GK0Aoi9kfYwFvzplqm3M_qSKyzFLWALQUgIRpfzZ5ITilbpff5jqumjcG4NHbgQNTq&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=2O4aWdzJ5axn4HDvHwHbnA&_nc_ss=7b2a8&oh=00_Af9Z01NYFnaUTouyILwUM5Il-exkO9YG-uS1g3AOqpNBpw&oe=6A215708",
+    details: "Used K&N 57S-6200 cold air intake for M270 Engine. Fits Mercedes-Benz CLA250, GLA250.",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/1Grvg5M6NY/",
+  },
+  {
+    id: 00007,
+    dateAdded: "2025-04-12", //yyyy-mm-dd
+    brand: "Mitsubishi",
+    title: "Mitsubishi OEM Wheels 18”",
+    price: 250,
+    category: "Wheels and Tires",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/466354933_598385119255177_178495294598375226_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_ohc=-Uy-FDV6C34Q7kNvwHlEqHr&_nc_oc=Ado9YlTYfDQ3cedsPv8r-iRirrbm69kPb78FjiYg1X4PRwvbz2Z3AMG3OLSy1lE7GxO9DrwV49FWJbVT0pu9jrsp&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=GFFJsjyY3aIGBpnMTP7Qjg&_nc_ss=7b2a8&oh=00_Af-0OWu5UGqjFiDR4kbmlnyfj53FSaiFWMoxOL0O9khPRA&oe=6A217049",
+    details: "Mitsubishi 18” wheels 5x114, 18x7”, 67.1 bore, 46 ET",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/18JqTDS9Jn/",
+  },
+  {
+    id: 00006,
+    dateAdded: "2025-04-11", //yyyy-mm-dd
+    brand: "Pirelli",
+    title: "Pirelli Winter Tires",
+    price: 300,
+    category: "Wheels and Tires",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/468418878_1092939062556020_695372272909714614_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=247b10&_nc_ohc=FY-FdRUAC0YQ7kNvwFse-rl&_nc_oc=Adrt12_Wpa0nWOgCsBJfdYkFjFE4oKp7Fk7avtSozZ1i58o2V6myNaxtqjaLWGiGWel3Atw44DtRPbSUogPDtZLB&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=1cGzdmOmb2HeGVgqgzNzqw&_nc_ss=7b2a8&oh=00_Af-KOysEP_kJ2EXWbo-XK4QoGUDOKVOHdxtlsW598jMFNA&oe=6A2161C8",
+    details: "4 x Pirelli Sottozero 3 Mercedes Original (MO) Winter Tires 215 / 55 R18 99V.",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/1FVcPYqGya/",
+  },
+  {
+    id: 00005,
+    dateAdded: "2024-04-12", //yyyy-mm-dd
+    brand: "Michelin",
+    title: "Michelin Latitude Tour HP",
+    price: 300,
+    category: "Wheels and Tires",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/462819060_1059432805884631_7259738991062701494_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=101&ccb=1-7&_nc_sid=247b10&_nc_ohc=IIQYsFiswd8Q7kNvwH1W-Zo&_nc_oc=Adori32qFSLmz0Gy_dQwmkxeoImdBCQr8d3V0caEEcaF-Hg2JV_jfnK1x750NJLi-Dz_MJ7BdkreuDnPIURrAn7Z&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=XBITTFf5kf29M6S625Et-g&_nc_ss=7b2a8&oh=00_Af8FW4nfEAwY6C5HZP8jRwUt0h3Odt4mZH324IdDerUjkQ&oe=6A216FE6",
+    details: "245 / 60 R 18 104H All season tires.",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/1MrCDvH9Wo/",
+  },
+  {
+    id: 00004,
+    dateAdded: "2024-04-11", //yyyy-mm-dd
+    brand: "Mercedes-AMG",
+    title: "Mercedes-AMG 45 Red Brake Calipers",
+    price: 700,
+    category: "Brakes",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/468455822_2112816412471266_4007450617324312310_n.jpg?stp=dst-jpg_p720x720_tt6&_nc_cat=111&ccb=1-7&_nc_sid=247b10&_nc_ohc=2958lowDcuwQ7kNvwHxfJ8K&_nc_oc=Adq1xj7qtiMWPXQUXdY4P28ifR7ceIReHyrazcMUu9HQjTJ9zMamIg5p-lAmGb5YKGP4pLQHidYKbt8-qqUlxoMS&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=daKQy3-g6XVXC6m2uCWHMA&_nc_ss=7b2a8&oh=00_Af80yxkjJtSEic7Qga0V6kgcp_bKI8Eg3aWxmVLYM0HeSg&oe=6A216CFB",
+    details: "Front left and right AMG fixed brake calipers from a CLA 45; also works on CLA250.",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/1ECYHBqTYV/",
+  },
+  {
+    id: 00003,
+    dateAdded: "2026-05-11", //yyyy-mm-dd
+    brand: "EBC",
+    title: "EBC Brake Pads for CLA250",
+    price: 100,
+    category: "Brakes",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/442011104_1654623675300525_4276704915790396384_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=247b10&_nc_ohc=p_9-cRajPGMQ7kNvwHRZ5JR&_nc_oc=AdpIluXtT-ZLhgmfmUrGIsOfbvU04kXHPJva9tYv71dNftLADlfiPtg2NVEmzC04ijNNqTouuJZya2gG9t9LE653&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=IRFTsDCCAIjy28BjxdqQmw&_nc_ss=7b2a8&oh=00_Af-g6SrE1Zs7OqDASc8iVo3W9tpjH6ZTG3VW0GIWzfXoAw&oe=6A2178F5",
+    details: "New EBC DP42165R Yellowstuff Front Brake Pads for Mercedes-Benz CLA250, B-Class, Infiniti Q30, etc.",
+    sold: false,
+    contactUrl: "https://www.facebook.com/share/17sXksoV1V/",
+  },
+  {
+    id: 00002,
+    dateAdded: "2022-11-20", //yyyy-mm-dd
+    brand: "WeatherTech",
+    title: "Ford Edge WeatherTech 448151IM",
+    price: 90,
+    category: "Interior",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t45.5328-4/282816723_5184956444931239_6716485261734629065_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=247b10&_nc_ohc=CTnYv4eWASUQ7kNvwHBH7Ed&_nc_oc=AdpgiPdmbM32D2zoSx79QCtxg7IMQz15NCXofdQN81sgvIV9JdRaHMHpWVdPU7O7K-BfWWXHTtXBUiVeOo_R_8mP&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=-b9CXNXARY0_UWke1o34gQ&_nc_ss=7b2a8&oh=00_Af8S4gjNZSbzaxiVSt1kR8ykIlaQSySbfv8rqWjQITKX5w&oe=6A218162",
+    details: "Front driver and passenger WeatherTech winter mats + original Ford Edge factory mats.",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/1DanCy2eA1/",
+  },
+  {
+    id: 00001,
+    dateAdded: "2020-07-25",
+    brand: "Mercedes-Benz",
+    title: "Pirelli Winter Tires with Wheels",
+    price: 900,
+    category: "Wheels and Tires",
+    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t1.6435-9/90743335_4070014829683096_8601424956661694464_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=106&ccb=1-7&_nc_sid=946e27&_nc_ohc=kK4cHqvGOjYQ7kNvwHExY0q&_nc_oc=AdqFU-uV8ZqujZbVMT4QtHtKmBGBWgfNKbG9tNtOQFgxO4Zpco4Q2l9q0mrsAApiDYu97rNmanUf3LVgAJ7dIRIP&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=RTYUNx0JaDD5zfce50-teQ&_nc_ss=7b2a8&oh=00_Af-JJm15U6r1IK9anY8bcvWr0A3M11yh8nw-WiBSObsypA&oe=6A4303E7",
+    details: "205/50 R 17 Pirelli Winter 210 Sottozero Serie II MOE Tires on 17-inch OEM Mercedes-Benz wheels.  205/50R17 93H Run Flat 6.5Jx17 ET49 5x112",
+    sold: true,
+    contactUrl: "https://www.facebook.com/share/18k5FXUmum/",
+  }
+];
+
+const container = document.getElementById('carContainer');
+const searchInput = document.getElementById('searchInput');
+const brandFilter = document.getElementById('brandFilter');
+
+function renderCars() {
+  const search = searchInput.value.toLowerCase();
+  const category = brandFilter.value;
+
+  const filtered = cars
+    .filter(car => {
+      const matchesSearch = car.title.toLowerCase().includes(search);
+      const matchesBrand = category === 'all' || car.category === category;
+      return matchesSearch && matchesBrand;
+    })
+    .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+
+  container.innerHTML = '';
+
+  filtered.forEach(car => {
+    const card = document.createElement('div');
+    card.className = 'car-card';
+    card.onclick = () => openModal(car.id);
+
+    card.innerHTML = `
+      ${car.privateSale ? '<div class="private-badge">Private Sale - No GST</div>' : ''}
+      ${car.incomingVeh ? '<div class="incoming-badge">Incoming Vehicle</div>' : ''}
+      <img src="${car.image}" alt="${car.title}">
+      <div class="card-body">
+        <div class="car-title">${car.title}</div>
+        <div class="car-price ${car.sold ? 'sold' : ''}">${car.sold ? 'SOLD • ' : ''}$${car.price.toLocaleString()}</div>
+        <div class="car-meta">${car.category}</div>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function openModal(id) {
+  const car = cars.find(c => c.id === id);
+  document.getElementById('modal-image').src = car.image;
+  document.getElementById('modal-title').innerText = car.title;
+
+  const modalPrice = document.getElementById('modal-price');
+  modalPrice.innerText = (car.sold ? 'SOLD • ' : '$') + (car.sold ? '$' : '') + car.price.toLocaleString();
+  modalPrice.className = 'modal-price' + (car.sold ? ' sold' : '');
+  document.getElementById('modal-specs').innerText = `${car.category} • ${car.brand}`;
+  document.getElementById('modal-details').innerText = car.details;
+  document.getElementById('contact-button').href = car.contactUrl;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+window.onclick = e => {
+  if (e.target.id === 'modal') closeModal();
+};
+
+searchInput.addEventListener('input', renderCars);
+brandFilter.addEventListener('change', renderCars);
+
+renderCars();
+
+function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+}
+
+// Close menu if user clicks elsewhere
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("dropdownMenu");
+  const button = document.querySelector(".menu-button");
+
+  if (!menu.contains(event.target) &&
+      !button.contains(event.target)) {
+    menu.style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>
