@@ -169,13 +169,63 @@
       border-radius: 8px;
       font-weight: bold;
     }
+    .nav-menu {
+      position: relative;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: relative;
+      right: 0;
+      top: 35px;
+      min-width: 180px;
+
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5f5f5;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Inventory</h1>
+  <!--<h1>Vehicles</h1><h1>Parts</h1>-->
+  <div class="nav-menu">
+  <button class="menu-button" onclick="toggleMenu()">
+    ☰ Menu
+  </button>
+
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="https://mercedes-amg.tech/Listing.html">Vehicles</a>
+    <a href="https://mercedes-amg.tech/Parts.html">Parts</a>
+    <a href="https://payumo.ca/pic1.jpeg">Contact</a>
+  </div>
+</div>
 </header>
+
+
 
 <section class="controls">
   <input type="text" id="searchInput" placeholder="Search make, model, trim..." />
@@ -210,7 +260,7 @@
 </div>
 
 <footer class="disclaimer">
-  Prices do not include applicable taxes. Vehicles marked “Private Sale - No GST” are exempt from GST. <br> Updated 14 May 2026 
+  Prices do not include applicable taxes. Vehicles marked “Private Sale - No GST” are exempt from GST. <br> Updated 30 May 2026 
 </footer>
 
 <!-- template
@@ -250,7 +300,7 @@ const cars = [
     interior: "Black",
     engine: "Naturally Aspirated 2.2L inline-four",
     transmission: "Automatic",
-    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/555105277_3311942782287149_1685908492187583807_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=946e27&_nc_ohc=FmlwvNxRJMYQ7kNvwHcMGnA&_nc_oc=Adp6PeAF0Yr5m4WXdt7fz8Yp5B2lUCkOVnhEh-3Y7AJg7HwtiMPFkM4VxKjYSKZWroWRqCPj6IkBysjSdVM1YvRg&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=8d7GEwjK94tClGg8RAWlhg&_nc_ss=7b2a8&oh=00_Af4u6Xg0mwHJKWN1ROsK5aUCuIE_NsMzbjAyuxZLMYipBQ&oe=6A0C4FDB",
+    image: "https://www.payumo.ca/cars/3.jpg",
     details: "Rare opportunity to own a beautifully preserved 1995 Mercedes‑Benz C220 in collector condition. This car combines classic Mercedes engineering, clean styling, and exceptional care. Perfect for enthusiasts, collectors, or anyone who appreciates timeless quality.",
     sold: true,
     privateSale: false,
@@ -269,7 +319,7 @@ const cars = [
     interior: "Black",
     engine: "Turbocharged 2.0L inline-four",
     transmission: "Automatic",
-    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/490641261_3124148547733241_3636333490258453752_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=111&ccb=1-7&_nc_sid=946e27&_nc_ohc=NYh4Br960pwQ7kNvwEST0Eg&_nc_oc=AdoWuySJ7MKmLVe6HfgoM8J-7XSHSe7xPyvvIRIdi_NhpVw4HQ_OaHPid0CKPEd28CRPIVhUXjGev8dsmyCCISiU&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=z5tzaj7-SW3EYEJZQK-XGQ&_nc_ss=7b2a8&oh=00_Af6yAL7lfTrTBQZLU8N0chbACz6pPa7asBsFAML4Njrv4Q&oe=6A0C46E8",
+    image: "https://www.payumo.ca/cars/1.jpg",
     details: "Vehicle has an IS38 OEM turbo on board ( Golf R )( Brand New) FULLY LOADED WITH SUNROOF, KEYLESS , SOUND SYSTEM, HEATED SEATS, DSG , RAIN SENSOR, CRUSE CONTROL, LEATHER SEATS .",
     sold: true,
     privateSale: false,
@@ -282,13 +332,13 @@ const cars = [
     dateAdded: "2026-05-12", //yyyy-mm-dd
     brand: "Mercedes-Benz",
     title: "2014 Mercedes-Benz E550",
-    price: 18000,
+    price: 12000,
     mileage: "210,000 km",
     exterior: "Black",
     interior: "Black",
     engine: "",
     transmission: "",
-    image: "https://www.payumo.ca/placeholder.jpeg",
+    image: "https://www.payumo.ca/cars/placeholder.jpeg",
     details: "",
     incomingVeh: true,
     contactUrl: "https://www.facebook.com/marketplace/item/946577551597286",
@@ -305,7 +355,7 @@ const cars = [
     interior: "Black",
     engine: "2.0L Turbocharged inline-four",
     transmission: "Automatic",
-    image: "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/690853900_36352203831037444_7835208526640402510_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=nahFw3sgvtcQ7kNvwEOA31c&_nc_oc=AdqH8SMgU4VbDmWTquJB0UCAfSttc-JjlfzMgFm1xuEbclYOq-7xgNt8JLt8ObxcfhjfTFWpVJoQ9ykL_neOaAyl&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=zOIvBeVbx150a78f_sazTg&_nc_ss=7b2a8&oh=00_Af4aGkHQTPe5bSLGN42HiVcWwEGTyj1qWozIthkvlUDpig&oe=6A0731CE",
+    image: "https://www.payumo.ca/cars/8.jpg",
     details: "This C300 combines luxury, comfort, and all-weather confidence with Mercedes’ 4MATIC AWD system, making it a great daily driver year-round.",
     contactUrl: "https://www.facebook.com/marketplace/item/946577551597286",
   },
@@ -320,7 +370,7 @@ const cars = [
     interior: "Black",
     engine: "2.0L Handcrafted Turbocharged inline-four",
     transmission: "7-speed Dual-Clutch Transmission",
-    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/698572925_36350820664509094_3753024283829016563_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=109&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=fL-IHoTC12gQ7kNvwFUo1mX&_nc_oc=AdocmIOvvblXPTIOv7JK6hWoSb7MSsxWEcs0w2T7xph2kuik5_s8cBgr5k-5J_aJJiJVg14Kd_V4GTIEd-6IMdL1&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=3dRsMVLovi7D3_S3gdeYpQ&_nc_ss=7b2a8&oh=00_Af6GiXyQq_TznbJ9CSZ5ggiHC9tmpTovZh5mZJ9-48R26A&oe=6A073521",
+    image: "https://www.payumo.ca/cars/7.jpg",
     details: "Clean title and 2-owner vehicle, with complete maintenance records. This car has been meticulously cared for and is in excellent condition. Private Sale - No GST",
     privateSale: true,
     contactUrl: "https://www.facebook.com/marketplace/item/1647837953034349",
@@ -330,13 +380,13 @@ const cars = [
     dateAdded: "2026-04-16", //yyyy-mm-dd
     brand: "Mercedes-Benz",
     title: "2015 Mercedes-Benz ML350 4MATIC",
-    price: 20500,
+    price: 19800,
     mileage: "120,000 km",
     exterior: "Grey",
     interior: "Black",
     engine: "3.0L Turbocharged Diesel V6",
     transmission: "7-speed Automatic Transmission",
-    image: "https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/672675326_35811739275083905_6813062432948239820_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=radfdW4j6O0Q7kNvwGQIynV&_nc_oc=Adqm-e0vD6L84yT7S5_2nb4WtytVzhkTVe3Xf-xNHuRzO-OB705XP36V5aJ4_wuXrW5mnIdigkTAZGfQgGpYkOVa&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&_nc_gid=-vwxXTN7AlFdjw8maM5RDQ&_nc_ss=7b2a8&oh=00_Af7smlXkEWNRggzLlrp9oLx-ajAOdUP4hss3aOO3fGY_lw&oe=6A0727C7",
+    image: "https://www.payumo.ca/cars/6.jpg",
     details: "Well-equipped 2015 ML350 BlueTEC 4MATIC with a strong feature set and premium options.",
     contactUrl: "https://www.facebook.com/marketplace/item/978412348039894",
   },
@@ -345,13 +395,13 @@ const cars = [
     dateAdded: "2026-04-11",
     brand: "Ford",
     title: "2012 Ford Edge Limited AWD",
-    price: 8500,
+    price: 7900,
     mileage: "196,000 km",
     interior: "Black",
     exterior: "Silver",
     engine: "Naturally Aspirated 3.5L V6",
     transmission: "Automatic",
-    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/668896709_35726767410247759_2183199922186353805_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=DnbepkLfFTwQ7kNvwHLKGHK&_nc_oc=AdrWV2G_FTaCF7f8ruO-ifJ1ESbc6yM2ykdizUmEZvFI0BG2Vd_tUsJgq7RHW_mBYnSLTySlqCg1__AWs3nDrb5V&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=UaA7wLrbb8Hkg9n5q4f7-A&_nc_ss=7b2a8&oh=00_Af4pKFgHtpKULub6loCOWa4tEdXUmANBXUNI5zSyQgmrLw&oe=6A074466",
+    image: "https://www.payumo.ca/cars/5.jpg",
     details: "Runs and drives great, highway mileage, and well maintained. Lots of space and a solid daily driver or family vehicle.",
     contactUrl: "https://www.facebook.com/marketplace/item/4466637443662399",
   },
@@ -366,7 +416,7 @@ const cars = [
     exterior: "Grey",
     engine: "Naturally Aspirated 3.5L V6",
     transmission: "Automatic",
-    image: "https://scontent-msp1-1.xx.fbcdn.net/v/t39.30808-6/655454866_35276872471903924_9158621609410559368_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=WJgxeV6nL-sQ7kNvwG5Lf6O&_nc_oc=AdpM_t-U7_CJMogQWIthD4WvwxiuFdN1iUVMQvGDR9BXoomG7Ye5RUQZf9UDrXrIe--VRzSV7BYPJJAETdNcaAtP&_nc_zt=23&_nc_ht=scontent-msp1-1.xx&_nc_gid=vOBwigXLgC0RKKtZaRHCkw&_nc_ss=7b2a8&oh=00_Af4RFOfBZPtIge13XHWOEsqJAUyVB0QBSxUho4kvVTHlpA&oe=6A07254A",
+    image: "https://www.payumo.ca/cars/4.jpg",
     details: "Fully loaded with premium Mercedes-Benz features and in excellent shape.",
     sold: true,
     contactUrl: "https://www.facebook.com/marketplace/item/2833670710165548",
@@ -382,7 +432,7 @@ const cars = [
     exterior: "Black",
     engine: "Naturally Aspirated 4.2L V8",
     transmission: "6-Speed Manual",
-    image: "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/652172141_35256837817240723_2444535996008092360_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=102&ccb=1-7&_nc_sid=db9c8c&_nc_ohc=8bkmoZmpWXcQ7kNvwHo5ixn&_nc_oc=AdrCdNn04DMN1k0epZAFeBJ4EmIAXcSghWs8XkPbzD8NIh1fXGiU4yE3Tkc2-OiYvDctBtEn2qDTOK2fpYBVXxKf&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_gid=g29ppex_zQP2PGHST_Z5hA&_nc_ss=7b2a8&oh=00_Af7jTBewLCgAI9-SFSCNWFp27T0PXxicvBzgoPoqCvbGZw&oe=6A071F9C",
+    image: "https://www.payumo.ca/cars/2.jpg",
     details: "This S5 is well-maintained and in excellent condition for its year. The combination of a V8 and manual transmission makes it one of the most engaging Audis to drive, while the black-on-red color combo turns heads everywhere.",
     sold: true,
     contactUrl: "https://www.facebook.com/marketplace/item/1322159732886758",
@@ -457,6 +507,27 @@ searchInput.addEventListener('input', renderCars);
 brandFilter.addEventListener('change', renderCars);
 
 renderCars();
+
+function toggleMenu() {
+  const menu = document.getElementById("dropdownMenu");
+
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+}
+
+// Close menu if user clicks elsewhere
+document.addEventListener("click", function(event) {
+  const menu = document.getElementById("dropdownMenu");
+  const button = document.querySelector(".menu-button");
+
+  if (!menu.contains(event.target) &&
+      !button.contains(event.target)) {
+    menu.style.display = "none";
+  }
+});
 </script>
 
 </body>
