@@ -1772,6 +1772,30 @@ Todo:
       document.getElementById("M270ENGINEParts").innerHTML = functionM270ENGINEPartsResult;
       document.getElementById("M270ENGINETorque").innerHTML = functionM270ENGINETorqueResult;
     }
+    function functionM113ENGINE(){
+      var functionM113ENGINEResult = "";
+      var functionM113ENGINEPResult = "";
+      var functionM113ENGINETResult = "";
+      var M113ENGINEValveCover = "REMOVED UPPER ENGINE COVER. REMOVED AIR FILTER HOUSING. CLEANED AREA OF WORK. REMOVED IGNITION COILS. DISCONNECTED FUEL FEED LINE TO DISTRIBUTOR. REMOVED CYLINDER HEAD COVER. INSTALLED NEW GASKET AND TORQUED CYLINDER HEAD COVERS TO SPEC. ASSEMBLED IN REVERSE ORDER. ";
+      var M113ENGINEValveCoverP = "<br><br><b>Parts: <br></b>Quote ruber pcv hoses, gaskets, RTV";
+      var M113ENGINEValveCoverT = "<br><br><b>Torque Specs:</b><br>8 Nm Ignition coil to cover<br>9 Nm Cylinder head cover bolts";
+      var M113ENGINERearMain = "LIFTED THE VEHICLE AND PLACED IN NEUTRAL. DISCONNECTED BATTERY GROUND. REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DISCONNECTED ALL EXHAUST O2 SENSORS. REMOVED COMPLETE EXHAUST. DISCONNECTED TRANSMISSION ELECTRICAL CONNECTOR AND SHIFT ROD. UNFASTENED TORQUE CONVERTER FROM THE DRIVE PLATE. REMOVED STARTER. REMOVED COMPLETE TRANSMISSION. REMOVED REAR MAIN SEAL. INSTALLED NEW REAR MAIN SEAL. ASSEMBLED IN REVERSE ORDER. PERFORMED UNDERBODY WASH. PERFORMED TEST DRIVE. LIFTED THE VEHICLE AND CONFIRMED NO LEAKS. RE-INSTALLED COVERS.";
+      var M113ENGINERearMainP = "<br><br><b>Parts: <br></b>A0009944160, A0199975845 x 2, torque converter bolts, crankshaft rear main seal, engine shampoo";
+      var M113ENGINERearMainT = "<br><br><b>Torque Specs:</b><br><b>Torque converter to drive plate:</b><br>42 Nm M8 straight threaded connection<br>4 Nm, 30 Nm, 90 deg, Angled threaded connection<br><br>40 Nm starter to crankcase<br>38 Nm Transmission to engine<br>12 Nm Bolts Transmission cooler lines";
+      if (document.getElementById("M113ENGINERearMain").checked == true) {
+        var functionM113ENGINEResult = M113ENGINERearMain;
+        var functionM113ENGINEPResult = M113ENGINERearMainP;
+        var functionM113ENGINETResult = M113ENGINERearMainT;
+      }
+      if (document.getElementById("M113ENGINEValveCover").checked == true) {
+        var functionM113ENGINEResult = M113ENGINEValveCover;
+        var functionM113ENGINEPResult = M113ENGINEValveCoverP;
+        var functionM113ENGINETResult = M113ENGINEValveCoverT;
+      }
+      document.getElementById("M113ENGINE").innerHTML = functionM113ENGINEResult;
+      document.getElementById("M113ENGINEP").innerHTML = functionM113ENGINEPResult;
+      document.getElementById("M113ENGINET").innerHTML = functionM113ENGINETResult;
+    }
     function functionM133ENGINE(){
       var functionM133ENGINEResult = "";
       var functionM133ENGINEPResult = "";
