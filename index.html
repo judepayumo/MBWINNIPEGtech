@@ -1772,30 +1772,6 @@ Todo:
       document.getElementById("M270ENGINEParts").innerHTML = functionM270ENGINEPartsResult;
       document.getElementById("M270ENGINETorque").innerHTML = functionM270ENGINETorqueResult;
     }
-    function functionM113ENGINE(){
-      var functionM113ENGINEResult = "";
-      var functionM113ENGINEPResult = "";
-      var functionM113ENGINETResult = "";
-      var M113ENGINEValveCover = "REMOVED UPPER ENGINE COVER. REMOVED AIR FILTER HOUSING. CLEANED AREA OF WORK. REMOVED IGNITION COILS. DISCONNECTED FUEL FEED LINE TO DISTRIBUTOR. REMOVED CYLINDER HEAD COVER. INSTALLED NEW GASKET AND TORQUED CYLINDER HEAD COVERS TO SPEC. ASSEMBLED IN REVERSE ORDER. ";
-      var M113ENGINEValveCoverP = "<br><br><b>Parts: <br></b>Quote ruber pcv hoses, gaskets, RTV";
-      var M113ENGINEValveCoverT = "<br><br><b>Torque Specs:</b><br>8 Nm Ignition coil to cover<br>9 Nm Cylinder head cover bolts";
-      var M113ENGINERearMain = "LIFTED THE VEHICLE AND PLACED IN NEUTRAL. DISCONNECTED BATTERY GROUND. REMOVED LOWER ENGINE AND TRANSMISSION COVERS. DISCONNECTED ALL EXHAUST O2 SENSORS. REMOVED COMPLETE EXHAUST. DISCONNECTED TRANSMISSION ELECTRICAL CONNECTOR AND SHIFT ROD. UNFASTENED TORQUE CONVERTER FROM THE DRIVE PLATE. REMOVED STARTER. REMOVED COMPLETE TRANSMISSION. REMOVED REAR MAIN SEAL. INSTALLED NEW REAR MAIN SEAL. ASSEMBLED IN REVERSE ORDER. PERFORMED UNDERBODY WASH. PERFORMED TEST DRIVE. LIFTED THE VEHICLE AND CONFIRMED NO LEAKS. RE-INSTALLED COVERS.";
-      var M113ENGINERearMainP = "<br><br><b>Parts: <br></b>A0009944160, A0199975845 x 2, torque converter bolts, crankshaft rear main seal, engine shampoo";
-      var M113ENGINERearMainT = "<br><br><b>Torque Specs:</b><br><b>Torque converter to drive plate:</b><br>42 Nm M8 straight threaded connection<br>4 Nm, 30 Nm, 90 deg, Angled threaded connection<br><br>40 Nm starter to crankcase<br>38 Nm Transmission to engine<br>12 Nm Bolts Transmission cooler lines";
-      if (document.getElementById("M113ENGINERearMain").checked == true) {
-        var functionM113ENGINEResult = M113ENGINERearMain;
-        var functionM113ENGINEPResult = M113ENGINERearMainP;
-        var functionM113ENGINETResult = M113ENGINERearMainT;
-      }
-      if (document.getElementById("M113ENGINEValveCover").checked == true) {
-        var functionM113ENGINEResult = M113ENGINEValveCover;
-        var functionM113ENGINEPResult = M113ENGINEValveCoverP;
-        var functionM113ENGINETResult = M113ENGINEValveCoverT;
-      }
-      document.getElementById("M113ENGINE").innerHTML = functionM113ENGINEResult;
-      document.getElementById("M113ENGINEP").innerHTML = functionM113ENGINEPResult;
-      document.getElementById("M113ENGINET").innerHTML = functionM113ENGINETResult;
-    }
     function functionM133ENGINE(){
       var functionM133ENGINEResult = "";
       var functionM133ENGINEPResult = "";
@@ -1816,6 +1792,29 @@ Todo:
       document.getElementById("M133ENGINEP").innerHTML = functionM133ENGINEPResult;
       document.getElementById("M133ENGINET").innerHTML = functionM133ENGINETResult;
     }
+    function functionM139ENGINE(){
+          var functionM139ENGINEResult = "";  //leave blank
+          var functionM139ENGINETorqueResult = ""; //leave blank
+          var functionM139ENGINEPartsResult = ""; //leave blank
+          var M139ENGINE45RR = "PLACED TRANSMISSION IN NEUTRAL AND PARKING BRAKE IN SERVICE MODE. LIFTED THE VEHICLE AND REMOVED UPPER ENGINE COVER. DISCONNECTED BATTERY GROUND. REMOVED VOLTAGE DIP LIMITER. REMOVED 12V BATTERY, BATTERY TRAY AND HOUSING. DISCONNECTED ENGINE WIRING HARNESS FOR REMOVAL OF THE ENGINE. REMOVED ENGINE CONTROL UNIT. REMOVED ENGINE AIR FILTER HOUSING. LIFTED THE VEHICLE AND REMOVED LOWER ENGINE COVER. REMOVED BOTH FRONT WHEELS. REMOVED FRONT SECTION OF FRONT FENDER LINERS. REMOVED HIGH TEMP COOLANT RESERVOIR. DISCONNECTED LOWER PRESSURE FUEL HOSE AT HIGH PRESSURE PUMP, VACUUM LINE FROM VACUUM PUMP TO BOOSTER, INERTING SYSTEM LINE, FRONT DRIVESHAFT FROM THE POWER TAKE-OFF, EXHAUST SYSTEM FROM THE CATALYTIC CONVERTER, TRANSMISSION CONTROL UNIT CONNECTOR, AND HEATER CORE COOLANT HOSES. DISCONNECTED ELECTRICAL CONNECTORS FOR FRONT PARKING SENSORS AND FRONT CAMERA OF 360 SYSTEM. REMOVED FRONT BUMPER AND BOTH HEADLIGHTS. DRAINED HIGH TEMP AND LOW TEMP COOLANT CIRCUITS. CONNECTED AC MACHINE AND RECOVERED REFRIGERANT. DISCONNECTED REFRIGERANT LINES FROM THE COMPRESSOR AND CONDENSER. REMOVED CONDENSER WITH FAN ASSEMBLY. REMOVED FRONT MODULE, RADIATOR ASSEMBLY WITH FAN UNIT. REMOVED FRONT LEFT AND RIGHT AXLE SHAFTS, AND LOWER ENGINE STABILIZER MOUNT. ATTACHED ENGINE SUPPORT FIXTURE AND SUPPORTED THE ENGINE AND TRANSMISSION. REMOVED RIGHT ENGINE MOUNT AND TRANSMISSION MOUNT. REMOVED ELECTRICAL CONNECTOR FOR STARTER AND TRANSMISSION. REMOVED ENGINE WITH TRANSMISSION. <br><br>INSTALLED ENGINE WITH TRANSMISSION. ASSEMBLED IN REVERSE ORDER. CONNECTED COOLANT VACUUM FILLER AND FILLED HIGH TEMP AND LOW TEMP COOLANT CIRCUITS. CONNECTED COOLANT PRESSURE TESTER AND PRESSURIZED BOTH COOLING SYSTEMS. CONFIRMED PRESSURE DOES NOT DROP AND CONFIRMED NO LEAKS VIA VISUAL INSPECTION. CONNECTED AC MACHINE. PERFORMED VACUUM AND LEAK TEST OF REFRIGERANT CIRCUIT. CONFIRMED NO LEAKS. CHARGED AC SYSTEM WITH REFRIGERANT. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED QUICK TEST. PERFORMED BLEEDING PROCEDURE FOR LOW TEMP COOLANT CIRCUIT. CLEARED FAULT. PERFORMED UNDERBODY WASH. PERFORMED HEADLAMP ALIGNMENT CHECK. ADJUSTED HEADLAMP ADJUSTMENTS. PERFORMED FOUR WHEEL ALIGNMENT CHECK AND ADJUSTMENTS.<br><br><b>********** NOTE: ADD APPROPRIATE STORIES FOR OTHER WORK PERFORMED: QUICK LUBE, TRANSMISSION SERVICE, PTO, DCT COVER. **********</b>";
+          var M139ENGINE45RRT = "";
+          var M139ENGINE45RRP = "<br><br><b>Parts:</b><br><br>A0239976345, A0239976245 x 2, A023997654565, A0009951733, Propeller shaft bolts to PTO, Coolant x 2, Engine shampoo";
+          var M139ENGINE45FilterHouse = "LIFTED THE VEHICLE AND REMOVED LOWER ENGINE COVER. DRAINED HIGH AND MEDIUM TEMP COOLANT SYSTEMS. DRAINED ENGINE OIL. REMOVED OIL FILTER CAP AND REMOVED FILTER. REMOVED COOLANT LINES. REMOVED OIL FILTER HOUSING. REMOVED HEAT EXCHANGER. CLEANED SEALING SURFACES AND INSTALLED NEW SEALS. INSTALLED HEAT EXCHANGER AND TORQUED TO SPEC. RE-INSTALLED OIL FILTER HOUSING. ADDED ENGINE OIL TO SPEC. CONNECTED COOLANT VACUUM FILLER AND FILLED COOLING SYSTEMS. CONNECTED PRESSURE TESTER AND PRESSURIZED BOTH COOLING SYSTEM. CONFIRMED NO COOLANT LEAK BY VISUAL INSPECTION.  ASSEMBLED IN REVERSER ORDER. STARTED THE VEHICLE AND CONFIRMED NO OIL LEAKS.";
+          var M139ENGINE45FilterHouseT = "<br><br><b>Torque:</b><br><br>25 Nm - Oil filter cap<br>20 Nm - Oil filter housing<br>20 Nm - Oil drain plugs<br>8 Nm - coolant lines to oil filter housing";
+          var M139ENGINE45FilterHouseP = "<br><br><b>Parts:</b><br><br>Oil filter or A0309970748, <br>A1391810100, <br>A1391840700, <br>N007603012102, <br>N007603014106, <br>A0009974605 x 2, <br>Coolant, <br>Engine Shampoo, <br>Engine Oil";
+          if (document.getElementById("M139ENGINE45RR").checked == true) {
+            var functionM139ENGINEResult = M139ENGINE45RR;
+            var functionM139ENGINEPartsResult = M139ENGINE45RRP;
+          }
+          if (document.getElementById("M139ENGINE45FilterHouse").checked == true) {
+            var functionM139ENGINEResult = M139ENGINE45FilterHouse;
+            var functionM139ENGINEPartsResult = M139ENGINE45FilterHouseP;
+            var functionM139ENGINETorqueResult = M139ENGINE45FilterHouseT;
+          }
+          document.getElementById("M139ENGINE").innerHTML = functionM139ENGINEResult;
+          document.getElementById("M139ENGINEP").innerHTML = functionM139ENGINEPartsResult;
+          document.getElementById("M139ENGINET").innerHTML = functionM139ENGINETorqueResult;
+        }
     function functionM256ENGINE(){
       var functionM256ENGINEResult = "";
       var functionM256ENGINEPResult = "";
@@ -2806,6 +2805,21 @@ Todo:
 					<s1 id="M133ENGINE";></s1>
           <s3 id="M133ENGINEP";></s3>
           <s3 id="M133ENGINET";></s3>
+
+        <span class="a"></span>
+
+<button class="button"; onclick="CopyToClipboard('M139ENGINE')">
+					M139 ENGINE</button>&nbsp&nbsp<button class="button"; onclick="CopyToClipboard('M139ENGINEP')">
+            COPY PARTS</button><br><br>
+					<form oninput="functionM139ENGINE()">
+						<input type="radio" id="M139ENGINE45RR" name="M139ENGINE">
+						<label class="s1" for="M139ENGINE45RR">AMG-45 Engine Removal/Installation&emsp;</label>
+            <input type="radio" id="M139ENGINE45FilterHouse" name="M139ENGINE">
+						<label class="s1" for="M139ENGINE45FilterHouse">AMG-45 Oil Filter Housing Re-seal&emsp;</label>
+					</form>
+					<s1 id="M139ENGINE";>RR 13H WP</s1>
+          <s3 id="M139ENGINEP";></s3>
+          <s3 id="M139ENGINET";></s3>
 
         <span class="a"></span>
 
@@ -4309,7 +4323,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 22 April 2026</p></s3l>
+          Updated: 18 June 2026</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
