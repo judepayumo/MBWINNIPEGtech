@@ -1443,15 +1443,6 @@ Todo:
       }
       const formattedResult = result.trim();
       return formattedResult;
-
-
-
-
-
-
-
-
-
     }
     function testFunction(){
       alert("In the function!");
@@ -1578,6 +1569,38 @@ Todo:
       var treadDepthResult = Math.round(mmToIn * mmInput.value * 32);
       document.getElementById("depthUnit").innerHTML = "inch";
       return treadDepthResult+"/32";
+    }
+    function AddRO(){
+          var brand = "";
+          if(document.getElementById("AddROOther").checked == true){
+            document.getElementById("AddROBrand").hidden = false;
+            brand = document.getElementById("AddROBrand").value;
+          }else if(document.getElementById("AddROMB").checked == true){
+            brand = "Mercedes-Benz";
+            document.getElementById("AddROBrand").hidden = true;
+          }else if(document.getElementById("AddROAMG").checked == true){
+            brand = "Mercedes-AMG";
+            document.getElementById("AddROBrand").hidden = true;
+          }
+          const addROResult = [
+            getTodayDate(),
+            document.getElementById("addRORO").value,
+            document.getElementById("addROYear").value,
+            brand,
+            document.getElementById("AddROModel").value.toUpperCase(),
+            document.getElementById("AddROWork").value.toUpperCase(),
+
+          ].join("\t");
+          navigator.clipboard.writeText(addROResult);
+        }
+    function getTodayDate(){
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+
+      return `${day}-${month}-${year}`;
+      //To use -----> getTodayDate();
     }
   </script>
   <script>//function ENGINES
@@ -2147,8 +2170,6 @@ Todo:
       document.getElementById("Model463P").innerHTML = functionModelPartsResult;
       document.getElementById("Model463T").innerHTML = functionModelTorqueResult;
     }
-
-
   </script>
   <script>// test area 2
 
@@ -2157,6 +2178,15 @@ Todo:
   //window.location.href = "Main Test.html";
 
 
+
+
+
+
+
+
+
+
+   
 
   </script>
   <body class="mainPage">
@@ -4114,6 +4144,29 @@ Todo:
       <div class="newSecondaryDiv" id="mscDiv"> <!-- ***************************************** MISCELLANEOUS STORIES ************************************* -->
         <s2>Miscellaneous</s2><br>
 
+        <button class="button"; onclick="CopyToClipboard('addROExcel')">
+          Format RO info for Excel
+          </button><br>
+          <form oninput="AddRO()">
+            <input type="text" id="addRORO" placeholder="RO #" size="10" maxlength="6">&nbsp;
+            <input type="text" id="addROYear" placeholder="Year" size="5" maxlength="4">&nbsp;
+            <input type="radio" id="AddROMB" name="AddROBrand" checked>
+            <label class="s1" for="AddROMB">Benz </label>
+            <input type="radio" id="AddROAMG" name="AddROBrand">
+            <label class="s1" for="AddROAMG">AMG </label>
+            <input type="radio" id="AddROOther" name="AddROBrand">
+            <label class="s1" for="AddROOther">Other </label>
+            <input type="text" hidden id="AddROBrand" placeholder="Brand" size="10">&nbsp;
+            <input type="text" id="AddROModel" placeholder="Model" size="10">&nbsp;
+            <input type="text" id="AddROWork" placeholder="Description" size="50">&nbsp;
+
+            &nbsp; &nbsp;
+            <input type="reset" onclick="AddRO()" value="Reset">
+          </form>
+          <s3e id="addROExcel"></s3e>
+
+        <span class="a"></span>
+
         <button class="button"; onclick="CopyToClipboard('partsrequest')">
           SERVICE PARTS REQUEST
           </button><br>
@@ -4236,28 +4289,15 @@ Todo:
             <b>2014 E550:   </b>WDDHF9BB1EA801841<br>
             <b>2019 F150:   </b>1FTEW1E48KKC72616<br>
             <b>2011 RX350:  </b>2T2BK1BA6BC084716<br>
-            <b>2012 Edge:   </b>2FMDK4KCXCBA13766<br>
             <b>2015 ML350:  </b>4JGDA2EB8FA528470<br>
           </s1>
 
         <span class="a"></span>
 
-        <button class="button"; onclick="CopyToClipboard('test223')">
-					Test File
-					</button><br>
-					<s1 id="test223";>
-						test pdf file.<br>
-            <a href = "/testpdf.pdf" target = "_blank">Opens in New</a>
-					</s1>
 
-        <span class="a"></span>
+        
 
-        <button class="button"; onclick="CopyToClipboard('279780279199')">
-					279780-279199 CYLINDER HEAD STORY </button><br>
-					<s1 id="279780279199";>LIFTED THE VEHICLE, PLACED IN NEUTRAL AND PARKING BRAKE OFF.  REMOVED UPPER AND LOWER ENGINE COVERS. DRAINED ENGINE COOLANT. REMOVED BOTH LEFT AND RIGHT WHEELS, FRONT SECTION OF FENDER LINERS. DRAINED HIGH TEMP COOLANT SYSTEM. DRAIN LOW TEMP COOLANT BY DISCONNECTING LOW TEMP HOSE AT PUMP. DRAINED ENGINE OIL AND LOOSENED OIL FILTER CAP. CONNECTED AC MACHINE AND RECOVERED AC REFRIGERANT. REMOVED FRONT BUMPER AND BOTH HEADLIGHTS. DISCONNECTED COOLANT HOSES, AND ELECTRICAL CONNECTORS ON RADIATOR AND FAN ASSEMBLY. REMOVED COOLER MODULE (RADIATORS AND FAN). DISCONNECTED EXHAUST AT FLEX PIPE AND DRIVESHAFT. REMOVED ENGINE AIR FILTER HOUSING, CHARGE AIR HOSE, AND AIR DUCT DOWNSTREAM OF FILTER. UNFASTENED 48V DC/DC CONVERTER AND PLACED ON THE SIDE. UNFASTENED  STARTER BATTERY PREFUSE BOX AND PLACED TO ONE SIDE. DISCONNECTED 12V BATTERY AND REMOVED. REMOVED BATTERY CARRIER. REMOVED TURBOCHARGER INERTING LINE. REMOVED HIGH TEMP COOLANT RESERVOIR. REMOVED CHARGE AIR COOLER, CHARGE PIPE, AND THROTTLE ACTUATOR WITH INTERMEDIATE FLANGE. REMOVED COOLANT LINES, VACUUM LINES, VENT LINES, AND ELECTRICAL CONNECTIONS ON TOP OF THE ENGINE. PLACED ENGINE AT 79 DEGREES AFTER CYLINDER 1 TDC AND REMOVED HIGH PRESSURE FUEL PUMP. DISCONNECTED LEFT AND RIGHT FRONT LOWER CONTROL ARMS FROM THE STEERING KNUCKLES. REMOVED LEFT AND RIGHT FRONT DRIVE AXLES. CONNECTED ENGINE HOIST. REMOVED RIGHT FRONT ENGINE MOUNT. DISCONNECTED LOWER ENGINE PENDULUM MOUNT AND LEFT TRANSMISSION MOUNT.  REMOVED ENGINE AND TRANSMISSION ASSEMBLY. REMOVED TRANSMISSION FROM THE ENGINE. INSTALLED ENGINE ON AN ENGINE STAND. REMOVED COOLANT RETURN LINE IN FRONT OF THE ENGINE. REMOVED CHARGE AIR DISTRIBUTOR. REMOVED CATALYTIC CONVERTER. REMOVED TURBOCHARGER WITH EXHAUST MANIFOLD. REMOVED VACUUM PUMP AND REAR CAM PLUG. PLACED ENGINE AT CYLINDER 1 TDC. REMOVED OIL FILL NECK, INTAKE CAM LIFT ACTUATOR, BOTH CAM HALL SENSORS, IGNITION COILS, SPARK PLUGS, AND FUEL RAIL WITH INJECTORS. REMOVED UPPER TIMING CASE COVER. REMOVED INTAKE AND EXHAUST CAM ADJUSTER SOLENOIDS.  REMOVED CYLINDER HEAD COVER. INSTALLED CAMSHAFT HOLDER TOOL. REMOVED CHAIN TENSIONER TENSIONER. REMOVED INTAKE AND EXHAUST CAM POSITIONERS. REMOVED INTAKE AND EXHAUST CAMSHAFTS. REMOVED ALL CAM FOLLOWERS AND COMPENSATING ELEMENTS. REMOVED CYLINDER HEAD AND CYLINDER HEAD GASKET. REMOVED TENSION OF  POLY-V BELT TENSIONER AND REMOVED BELT (48V WITH STARTER-ALTERNATOR). LOCKED CRACK AND REMOVED CRANKSHAFT PULLEY/TORSIONAL DAMPER. REMOVED AC COMPRESSOR AND REMOVED OIL PAN. REMOVED OIL PUMP VALVE SOLENOID HARNESS FROM THE LOWER FRONT COVER. REMOVED LOWER COVER OF TIMING GEAR CASING. REMOVE TIMING CHAIN. REMOVED UPPER AND LOWER SLIDE RAIL PINS AND REMOVED BOTH RAILS. INSTALLED NEW LOWER SLIDE RAIL. CLEANED SEALING SURFACES FOR BOTTOM TIMING CASE COVER, UPPER TIMING CASE COVER, CYLINDER HEAD GASKET. APPLIED RTV TO LOWER TIMING CASE COVER AND INSTALLED. INSTALLED NEW CYLINDER HEAD GASKET. TRANSFERRED OVER CYLINDER HEAD COOLANT TEMP SENSOR. INSTALLED NEW CYLINDER HEAD AND TORQUED TO SPEC. INSTALLED NEW O-RING FOR CAM ADJUSTER SOLENOIDS AND TORQUED NEW BOLTS. DISASSEMBLED FUEL INJECTORS FROM THE RAIL AND INSTALLED NEW SEAL PACKAGE. ASSEMBLED IN REVERSE ORDER - INSTALLING NEW SEALS, GASKETS, AND BOLTS WHERE NEEDED. CONNECTED AC MACHINE AND FILLED AC REFRIGERANT AND OIL. CONNECTED COOLANT VACUUM FILLER ON HIGH TEMP AND LOW TEMP CIRCUITS. FILLED COOLING SYSTEM. CONNECTED COOLANT PRESSURE TESTER AND PRESSURIZED BOTH HIGHT TEMP AND LOW TEMP SYSTEMS. CONFIRMED NO LEAKS VIA VISUAL INSPECTION. INSTALLED NEW OIL FILTER AND FILLED ENGINE OIL TO SPEC. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED BLEEDING PROCEDURE OF LOW TEMP COOLANT SYSTEM. STARTED THE ENGINE. PERFORMED TEACH-IN OF CAMSHAFT POSITION. PERFORMED SENSOR ROTOR STANDSTILL ADAPTATION. PERFORMED RESET OF MIXTURE ADAPTATION. CONFIRMED ENGINE OIL LEVEL IS GOOD. PERFORMED QUICK TEST. CLEARED FAULTS. PERFORMED TEST DRIVE. LIFTED THE VEHICLE AND PERFORMED VISUAL INSPECTION FOR OIL LEAKS. CONFIRMED NO LEAKS. PERFORMED UNDERBODY WASH IN AREA OF WORK. RE-INSTALLED UPPER AND LOWER COVERS. RE-TORQUED WHEELS. PERFORMED ALIGNMENT CHECK AND ADJUSTED FRONT LEFT AND RIGHT TOES. PERFORMED HEADLAMP LEVEL CHECK AND ADJUSTMENT. 
-					</s1>
 
-				<span class="a"></span>
 
 
   
@@ -4347,7 +4387,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 18 June 2026</p></s3l>
+          Updated: 05 July 2026</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
