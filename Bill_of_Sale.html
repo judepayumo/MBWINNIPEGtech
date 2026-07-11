@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--
+  Bill of Sale Form
+  Fillable HTML form with two-copy print (Seller’s Copy + Buyer’s Copy),
+  auto tax calculation (GST 5% + RST 7%), VIN validation, and live sync.
+                                                                                        -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill of Sale</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: letter;
+      margin: 0.35in;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.2;
+      color: #000;
+      background: #e8e8e8;
+      padding: 16px;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      position: relative;
+    }
+
+    .form {
+      border: 1.6pt solid #000;
+      padding: 0.22in 0.28in 0.18in 0.28in;
+      height: 10.2in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .header {
+      background: #c8c8c8;
+      text-align: center;
+      font-size: 15pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding: 3px 0 2px;
+      margin: -0.22in -0.28in 7px -0.28in;
+      border-bottom: 1pt solid #000;
+    }
+
+    .intro {
+      font-size: 9pt;
+      margin-bottom: 3px;
+    }
+
+    /* Dealer field (inline with seller name, right side) */
+    .dealer-inline {
+      display: flex;
+      align-items: flex-end;
+      gap: 25px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .dealer-inline label {
+      font-size: 8.5pt;
+      font-weight: bold;
+      white-space: nowrap;
+      width: auto;
+    }
+
+    .dealer-inline input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      width: 60px;
+      height: 16px;
+      padding: 0 2px 1px;
+      outline: none;
+      flex: none;
+    }
+
+
+    /* Dealer RST field (inline with seller name, right side) */
+    .rstno-inline {
+      display: flex;
+      align-items: flex-end;
+      gap: 0px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .rstno-inline label {
+      font-size: 8.5pt;
+      font-weight: bold;
+      white-space: nowrap;
+      width: auto;
+    }
+
+    .rstno-inline input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      width: 85px;
+      height: 16px;
+      padding: 0 2px 1px;
+      outline: none;
+      flex: none;
+    }
+
+    /* PARTY BLOCKS (Seller / Buyer) */
+    .party {
+      display: flex;
+      margin-bottom: 4px;
+    }
+
+    .party-side {
+      width: 68px;
+      font-weight: bold;
+      font-size: 9pt;
+      padding-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .party-fields {
+      flex: 1;
+    }
+
+    .fline {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 3px;
+    }
+
+    .fline label {
+      width: 72px;
+      font-size: 8.5pt;
+      flex-shrink: 0;
+    }
+
+    .fline input {
+      flex: 1;
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      padding: 0 2px 1px;
+      height: 16px;
+      outline: none;
+    }
+
+    .fline.phone input {
+      max-width: 200px;
+    }
+
+    /* VEHICLE SECTION */
+    .veh-label {
+      font-weight: bold;
+      font-size: 9pt;
+      margin: 20px 0 3px;
+    }
+
+    .veh-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+
+    .veh-row label {
+      font-size: 8.5pt;
+      font-weight: bold;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .veh-row input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      padding: 0 2px 1px;
+      height: 16px;
+      outline: none;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* PRICE BREAKDOWN */
+    .price-section {
+      margin: 40px 0 20px;
+    }
+
+    .price-header {
+      font-weight: bold;
+      font-size: 9pt;
+      margin-bottom: 3px;
+    }
+
+    .price-header input {/** experimental **/
+        border: none;
+        border-bottom: 1pt solid #000;
+        background: transparent;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 9pt;
+        padding: 0 2px 1px;
+        height: 16px;
+        width: 75px;
+        min-width: 0;
+        outline: none;
+        
+    }
+
+    .price-breakdown { 
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+
+    .price-item {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .price-item label {
+      font-size: 8.5pt;
+      font-weight: bold;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .price-item input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      padding: 0 2px 1px;
+      height: 16px;
+      width: 100%;
+      min-width: 0;
+      outline: none;
+      flex: 1;
+    }
+
+    .price-item.total label {
+      font-weight: bold;
+    }
+
+    .price-item.total input {
+      font-weight: bold;
+    }
+
+    /* Calculated fields (GST / RST / TOTAL) */
+    .price-item input[readonly] {
+      background: #f5f5f5;
+      color: #222;
+      cursor: default;
+    }
+
+    .price-subject {
+      font-size: 8pt;
+      margin-top: 2px;
+    }
+
+    /* SPECIAL CONDITIONS */
+    .special-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 9.5pt;
+      text-decoration: underline;
+      margin: 5px 0 3px;
+    }
+
+    .cond {
+      font-size: 8.5pt;
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .cond-num {
+      font-weight: bold;
+    }
+
+    /* Checkboxes */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 11px;
+      height: 11px;
+      border: 1.15pt solid #000;
+      border-radius: 0;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      vertical-align: middle;
+      margin: 0 1px 0 0;
+    }
+
+    input[type="checkbox"]:checked {
+      background: #000;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      top: -3.5px;
+      left: 0px;
+      font-size: 11px;
+      color: #fff;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .chk {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-right: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chk-group {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+    }
+
+    .subline {
+      margin: 2px 0 1px 16px;
+      font-size: 8pt;
+    }
+
+    .lines {
+      margin: 1px 0 2px 16px;
+    }
+
+    .lines input {
+      display: block;
+      width: 100%;
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      padding: 0 2px 1px;
+      height: 15px;
+      outline: none;
+      margin-bottom: 3px;
+    }
+
+    .inline-input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 10pt;
+      padding: 0 2px 1px;
+      height: 15px;
+      outline: none;
+      width: 160px;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    /* CERTIFY */
+    .certify {
+      font-size: 8.5pt;
+      margin: 50px 0 50px;
+    }
+
+    /* SIGNATURES */
+    .sigs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 28px;
+      margin-top: 4px;
+    }
+
+    .sig-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sig-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sig-field input {
+      border: none;
+      border-bottom: 1pt solid #000;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11pt;
+      height: 20px;
+      padding: 0 2px;
+      outline: none;
+    }
+
+    .sig-field .lbl {
+      font-size: 8pt;
+      text-align: center;
+      margin-top: 1px;
+    }
+
+    /* FOCUS */
+    input[type="text"]:focus,
+    input[type="checkbox"]:focus {
+      background: #fffde7 !important;
+      outline: none;
+    }
+
+    input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 1.5px #1565c0;
+    }
+
+    /* VIN validation highlight */
+    .vin-invalid {
+      background: #ffebee !important;
+      border-bottom: 1.5pt solid #d32f2f !important;
+      color: #b71c1c;
+    }
+    .vin-invalid:focus {
+      background: #ffcdd2 !important;
+      border-bottom: 1.5pt solid #c62828 !important;
+    }
+    .vin-valid {
+      background: #e8f5e9 !important;
+      border-bottom: 1.5pt solid #2e7d32 !important;
+    }
+
+    /* Copy label (hidden on screen) */
+    .copy-label {
+      display: none;
+      text-align: center;
+      font-size: 9.5pt;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #000;
+    }
+
+    /* PRINT */
+    @media print {
+      html {
+        zoom: 0.95;   /* force 95% scale when printing */
+      }
+
+      body {
+        background: #fff;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 0;
+        box-shadow: none;
+        margin: 0;
+        page-break-after: always;
+        page-break-inside: avoid;
+        position: relative;
+      }
+
+      .page:last-of-type {
+        page-break-after: auto;
+      }
+
+      .form {
+        border: 1.6pt solid #000;
+        height: auto;
+        min-height: 10.0in;
+        padding: 0.2in 0.26in 0.15in 0.26in;
+        position: relative;
+      }
+
+      .header {
+        margin: -0.2in -0.26in 6px -0.26in;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: #c8c8c8 !important;
+      }
+
+      input[type="text"] {
+        border-bottom: 1pt solid #000 !important;
+        background: transparent !important;
+        color: #000 !important;
+      }
+
+      .vin-invalid,
+      .vin-valid {
+        background: transparent !important;
+        border-bottom: 1pt solid #000 !important;
+        color: #000 !important;
+      }
+
+      input[type="checkbox"] {
+        border: 1.15pt solid #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      input[type="checkbox"]:checked {
+        background: #000 !important;
+      }
+
+      input[type="checkbox"]:checked::after {
+        color: #fff !important;
+      }
+
+      .copy-label {
+        display: block !important;
+        position: absolute;
+        bottom: 0.12in;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 9.5pt;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+      }
+
+      .print-hint { display: none !important; }
+    }
+
+    /* SCREEN HINT */
+    .print-hint {
+      text-align: center;
+      max-width: 8.5in;
+      margin: 0 auto 14px;
+      font-size: 13px;
+      color: #333;
+      background: #e3f2fd;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #90caf9;
+    }
+    .print-hint button {
+      background: #1565c0;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .print-hint button:hover { background: #0d47a1; }
+  </style>
+</head>
+
+<body>
+  <div class="print-hint">
+    Fill the form on the first page. The second page (Buyer’s Copy) auto-fills from it.
+    <button onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <!-- ==================== PAGE 1: SELLER’S COPY (master) ==================== -->
+  <div class="page" id="page-seller">
+    <div class="form">
+      <div class="header">BILL OF SALE</div>
+
+      <div class="intro">THIS IS TO CERTIFY THAT I:</div>
+
+      <!-- SELLER -->
+      <div class="party">
+        <div class="party-side">SELLER’S</div>
+        <div class="party-fields">
+          <div class="fline">
+            <label>NAME</label>
+            <input type="text" name="seller_name">
+            <div class="dealer-inline">
+              <label>| Dealer Permit:</label>
+              <input type="text" name="dealer" autocomplete="off">
+            </div>
+          </div>
+          <div class="fline"><label>ADDRESS</label><input type="text" name="seller_addr1">
+            <div class="rstno-inline">
+              <label>| RST No.:</label>
+              <input type="text" name="rstno" autocomplete="off">
+            </div>
+        
+        </div>
+          <div class="fline"><label></label><input type="text" name="seller_addr2"></div>
+          <!-- <div class="fline"><label></label><input type="text" name="seller_addr3"></div> -->
+          <div class="fline phone"><label>TELEPHONE</label><input type="text" name="seller_phone"></div>
+        </div>
+      </div>
+
+      <div class="veh-label">DO HEREBY SELL MY VEHICLE DESCRIBED BELOW:</div>
+
+      <div class="veh-row">
+        <label>VEHICLE MAKE</label>
+        <input type="text" name="make" style="flex:1.2">
+        <label>MODEL</label>
+        <input type="text" name="model" style="flex:1.5">
+      </div>
+      <div class="veh-row">
+        <label>VEHICLE MODEL YEAR</label>
+        <input type="text" name="year" style="max-width:90px;flex:0 0 90px">
+        <label>COLOUR</label>
+        <input type="text" name="colour">
+        <label>BODY TYPE</label>
+        <input type="text" name="bodytype">
+
+      </div>
+      <div class="veh-row">
+        <label>ODOMETER READING</label>
+        <input type="text" name="odometer" style="flex:1.2">
+        <label>V.I.N</label>
+        <input type="text" name="vin" class="vin-input" maxlength="17" minlength="17" pattern="[A-HJ-NPR-Z0-9]{17}" title="VIN must be exactly 17 characters (A–Z, 0–9, no I/O/Q)" style="flex:1.5" autocomplete="off" spellcheck="false">
+      </div>
+
+      <!-- BUYER -->
+      <div class="veh-label" style="margin-top:7px">TO BUYER LISTED BELOW:</div>
+
+      <div class="party">
+        <div class="party-side">BUYER’S</div>
+        <div class="party-fields">
+          <div class="fline"><label>NAME</label><input type="text" name="buyer_name"></div>
+          <div class="fline"><label>ADDRESS</label><input type="text" name="buyer_addr1"></div>
+          <div class="fline"><label></label><input type="text" name="buyer_addr2"></div>
+          <!-- <div class="fline"><label></label><input type="text" name="buyer_addr3"></div> -->
+          <div class="fline phone"><label>TELEPHONE</label><input type="text" name="buyer_phone"></div>
+        </div>
+      </div>
+
+      <!-- PRICE BREAKDOWN -->
+      <div class="price-section">
+        <div class="price-header">THE SELLER AGREES TO SELL, AND THE BUYER AGREES TO PURCHASE, THE ABOVE-DESCRIBED VEHICLE FOR THE TOTAL CONSIDERATION OF $
+            <input type="text" name="total" class="total-input"> PAYABLE AS FOLLOWS: 
+        </div>
+        <div class="price-breakdown">
+          <div class="price-item">
+            <label>PRICE $</label>
+            <input type="text" name="price" class="price-input">
+          </div>
+          <div class="price-item">
+            <label>GST $</label>
+            <input type="text" name="gst" class="gst-input">
+          </div>
+          <div class="price-item">
+            <label>RST $</label>
+            <input type="text" name="rst" class="rst-input">
+          </div>
+        </div>
+        <div class="price-subject">SUBJECT TO THE TERMS AND SPECIAL CONDITIONS OUTLINED BELOW:</div>
+      </div>
+
+      <div class="special-title">SPECIAL CONDITIONS OF SALE</div>
+
+      <!-- 1 -->
+      <div class="cond">
+        <span class="cond-num">1.</span> FREE OF ALL LIENS AND ENCUMBRANCES:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="liens_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="liens_no"> NO</label>
+        </span>
+        <div class="subline">IF NO, LIST NAME OF LIEN HOLDER:</div>
+        <div class="lines">
+          <input type="text" name="lien1">
+          <!-- <input type="text" name="lien2"> -->
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="cond">
+        <span class="cond-num">2.</span> PAID IN FULL:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="full_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="full_no"> NO</label>
+        </span>
+        &nbsp; IF NO, REMAINDER DUE BY:
+        <input type="text" class="inline-input" name="remainder_due" style="width:170px">
+      </div>
+
+      <!-- 3 -->
+      <div class="cond" style="margin-top:5px">
+        <span class="cond-num">3.</span> PAID WITH:
+        <span class="chk-group" style="margin-left:4px">
+          <label class="chk"><input type="checkbox" name="cash"> CASH</label>
+          <label class="chk"><input type="checkbox" name="cheque"> BANK DRAFT</label>
+          <label class="chk"><input type="checkbox" name="mo"> ELECTRONIC TRANSFER</label>
+          <label class="chk"><input type="checkbox" name="other"> OTHER</label>
+        </span>
+      </div>
+
+      <!-- 4 -->
+      <div class="cond">
+        <span class="cond-num">4.</span> IF OTHER, PLEASE SPECIFY PAYMENT TERMS (IF ANY):
+        <div class="lines" style="margin-left:0">
+          <input type="text" name="terms1">
+          <!-- <input type="text" name="terms2"> -->
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="cond">
+        <span class="cond-num">5.</span> PROVINCIAL SAFETY CERTIFICATE PROVIDED:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="safety_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="safety_no"> NO</label>
+        </span>
+      </div>
+
+      <!-- 6 -->
+      <div class="cond">
+        <span class="cond-num">6.</span> TITLE / BRANDING STATUS:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="title_clean"> CLEAN TITLE (not salvage, rebuilt, or irreparable)</label>
+        </span>
+      </div>
+
+      <!-- 7 -->
+      <div class="cond">
+        <span class="cond-num">7.</span> SPECIAL CONDITIONS OF SALE (IF ANY):
+        <div class="lines" style="margin-left:0">
+          <input type="text" name="spec1" placeholder="THE BUYER HAS INSPECTED AND ACCEPTED THE VEHICLE IN ITS PRESENT CONDITION.">
+          <input type="text" name="spec2" placeholder="ANY MODIFICATIONS OR REPAIRS AFTER THE ISSUANCE OF THE CERTIFICATE OF INSPECTION">
+          <input type="text" name="spec3" placeholder="ARE THE BUYER'S SOLE RESPONSIBILITY.">
+        </div>
+      </div>
+
+      <div class="certify">
+        I HEREBY CERTIFY THAT THE ABOVE INFORMATION IS TRUE TO THE BEST OF MY KNOWLEDGE AND UNDERSTANDING.
+      </div>
+
+      <!-- SIGNATURES -->
+      <div class="sigs">
+        <div class="sig-col">
+          <div class="sig-field">
+            <input type="text" name="seller_print">
+            <div class="lbl">SELLER (PRINT NAME)</div>
+          </div>
+          <div class="sig-field">
+            <input type="text" name="buyer_print">
+            <div class="lbl">BUYER (PRINT NAME)</div>
+          </div>
+        </div>
+        <div class="sig-col">
+          <div class="sig-field">
+            <input type="text" name="seller_sig">
+            <div class="lbl">SELLER (SIGNATURE)</div>
+          </div>
+          <div class="sig-field">
+            <input type="text" name="buyer_sig">
+            <div class="lbl">BUYER (SIGNATURE)</div>
+          </div>
+          <div class="sig-field" style="margin-top:2px">
+            <input type="text" name="date">
+            <div class="lbl">DATE</div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-label">SELLER’S COPY</div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: BUYER’S COPY (auto-synced) ==================== -->
+  <div class="page" id="page-buyer">
+    <div class="form">
+      <div class="header">BILL OF SALE</div>
+
+      <div class="intro">THIS IS TO CERTIFY THAT I:</div>
+
+      <!-- SELLER -->
+      <div class="party">
+        <div class="party-side">SELLER’S</div>
+        <div class="party-fields">
+          <div class="fline">
+            <label>NAME</label>
+            <input type="text" name="seller_name">
+            <div class="dealer-inline">
+              <label>| Dealer Permit:</label>
+              <input type="text" name="dealer" autocomplete="off">
+            </div>
+          </div>
+          <div class="fline"><label>ADDRESS</label><input type="text" name="seller_addr1">
+            <div class="rstno-inline">
+              <label>| RST No.:</label>
+              <input type="text" name="rstno" autocomplete="off">
+            </div>
+        
+        </div>
+          <div class="fline"><label></label><input type="text" name="seller_addr2"></div>
+          <!-- <div class="fline"><label></label><input type="text" name="seller_addr3"></div> -->
+          <div class="fline phone"><label>TELEPHONE</label><input type="text" name="seller_phone"></div>
+        </div>
+      </div>
+
+      <div class="veh-label">DO HEREBY SELL MY VEHICLE DESCRIBED BELOW:</div>
+
+      <div class="veh-row">
+        <label>VEHICLE MAKE</label>
+        <input type="text" name="make" style="flex:1.2">
+        <label>MODEL</label>
+        <input type="text" name="model" style="flex:1.5">
+      </div>
+      <div class="veh-row">
+        <label>VEHICLE MODEL YEAR</label>
+        <input type="text" name="year" style="max-width:90px;flex:0 0 90px">
+        <label>COLOUR</label>
+        <input type="text" name="colour">
+        <label>BODY TYPE</label>
+        <input type="text" name="bodytype">
+
+      </div>
+      <div class="veh-row">
+        <label>ODOMETER READING</label>
+        <input type="text" name="odometer" style="flex:1.2">
+        <label>V.I.N</label>
+        <input type="text" name="vin" class="vin-input" maxlength="17" minlength="17" pattern="[A-HJ-NPR-Z0-9]{17}" title="VIN must be exactly 17 characters (A–Z, 0–9, no I/O/Q)" style="flex:1.5" autocomplete="off" spellcheck="false">
+      </div>
+
+      <!-- BUYER -->
+      <div class="veh-label" style="margin-top:7px">TO BUYER LISTED BELOW:</div>
+
+      <div class="party">
+        <div class="party-side">BUYER’S</div>
+        <div class="party-fields">
+          <div class="fline"><label>NAME</label><input type="text" name="buyer_name"></div>
+          <div class="fline"><label>ADDRESS</label><input type="text" name="buyer_addr1"></div>
+          <div class="fline"><label></label><input type="text" name="buyer_addr2"></div>
+          <!-- <div class="fline"><label></label><input type="text" name="buyer_addr3"></div> -->
+          <div class="fline phone"><label>TELEPHONE</label><input type="text" name="buyer_phone"></div>
+        </div>
+      </div>
+
+      <!-- PRICE BREAKDOWN -->
+      <div class="price-section">
+        <div class="price-header">THE SELLER AGREES TO SELL, AND THE BUYER AGREES TO PURCHASE, THE ABOVE-DESCRIBED VEHICLE FOR THE TOTAL CONSIDERATION OF $
+            <input type="text" name="total" class="total-input"> PAYABLE AS FOLLOWS: 
+        </div>
+        <div class="price-breakdown">
+          <div class="price-item">
+            <label>PRICE $</label>
+            <input type="text" name="price" class="price-input">
+          </div>
+          <div class="price-item">
+            <label>GST $</label>
+            <input type="text" name="gst" class="gst-input">
+          </div>
+          <div class="price-item">
+            <label>RST $</label>
+            <input type="text" name="rst" class="rst-input">
+          </div>
+        </div>
+        <div class="price-subject">SUBJECT TO THE TERMS AND SPECIAL CONDITIONS OUTLINED BELOW:</div>
+      </div>
+
+      <div class="special-title">SPECIAL CONDITIONS OF SALE</div>
+
+      <!-- 1 -->
+      <div class="cond">
+        <span class="cond-num">1.</span> FREE OF ALL LIENS AND ENCUMBRANCES:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="liens_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="liens_no"> NO</label>
+        </span>
+        <div class="subline">IF NO, LIST NAME OF LIEN HOLDER:</div>
+        <div class="lines">
+          <input type="text" name="lien1">
+          <!-- <input type="text" name="lien2"> -->
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="cond">
+        <span class="cond-num">2.</span> PAID IN FULL:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="full_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="full_no"> NO</label>
+        </span>
+        &nbsp; IF NO, REMAINDER DUE BY:
+        <input type="text" class="inline-input" name="remainder_due" style="width:170px">
+      </div>
+
+      <!-- 3 -->
+      <div class="cond" style="margin-top:5px">
+        <span class="cond-num">3.</span> PAID WITH:
+        <span class="chk-group" style="margin-left:4px">
+          <label class="chk"><input type="checkbox" name="cash"> CASH</label>
+          <label class="chk"><input type="checkbox" name="cheque"> BANK DRAFT</label>
+          <label class="chk"><input type="checkbox" name="mo"> ELECTRONIC TRANSFER</label>
+          <label class="chk"><input type="checkbox" name="other"> OTHER</label>
+        </span>
+      </div>
+
+      <!-- 4 -->
+      <div class="cond">
+        <span class="cond-num">4.</span> IF OTHER, PLEASE SPECIFY PAYMENT TERMS (IF ANY):
+        <div class="lines" style="margin-left:0">
+          <input type="text" name="terms1">
+          <!-- <input type="text" name="terms2"> -->
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="cond">
+        <span class="cond-num">5.</span> PROVINCIAL SAFETY CERTIFICATE PROVIDED:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="safety_yes"> YES</label>
+          <label class="chk"><input type="checkbox" name="safety_no"> NO</label>
+        </span>
+      </div>
+
+      <!-- 6 -->
+      <div class="cond">
+        <span class="cond-num">6.</span> TITLE / BRANDING STATUS:
+        <span class="chk-group">
+          <label class="chk"><input type="checkbox" checked name="title_clean"> CLEAN TITLE (not salvage, rebuilt, or irreparable)</label>
+        </span>
+      </div>
+
+      <!-- 7 -->
+      <div class="cond">
+        <span class="cond-num">7.</span> SPECIAL CONDITIONS OF SALE (IF ANY):
+        <div class="lines" style="margin-left:0">
+          <input type="text" name="spec1" placeholder="THE BUYER HAS INSPECTED AND ACCEPTED THE VEHICLE IN ITS PRESENT CONDITION.">
+          <input type="text" name="spec2" placeholder="ANY MODIFICATIONS OR REPAIRS AFTER THE ISSUANCE OF THE CERTIFICATE OF INSPECTION">
+          <input type="text" name="spec3" placeholder="ARE THE BUYER'S SOLE RESPONSIBILITY.">
+        </div>
+      </div>
+
+      <div class="certify">
+        I HEREBY CERTIFY THAT THE ABOVE INFORMATION IS TRUE TO THE BEST OF MY KNOWLEDGE AND UNDERSTANDING.
+      </div>
+
+      <!-- SIGNATURES -->
+      <div class="sigs">
+        <div class="sig-col">
+          <div class="sig-field">
+            <input type="text" name="seller_print">
+            <div class="lbl">SELLER (PRINT NAME)</div>
+          </div>
+          <div class="sig-field">
+            <input type="text" name="buyer_print">
+            <div class="lbl">BUYER (PRINT NAME)</div>
+          </div>
+        </div>
+        <div class="sig-col">
+          <div class="sig-field">
+            <input type="text" name="seller_sig">
+            <div class="lbl">SELLER (SIGNATURE)</div>
+          </div>
+          <div class="sig-field">
+            <input type="text" name="buyer_sig">
+            <div class="lbl">BUYER (SIGNATURE)</div>
+          </div>
+          <div class="sig-field" style="margin-top:2px">
+            <input type="text" name="date">
+            <div class="lbl">DATE</div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-label">BUYER’S COPY</div>
+    </div>
+  </div>
+
+  <script>
+    // ========== Helper: get the two forms ==========
+    const sellerForm = document.querySelector('#page-seller .form');
+    const buyerForm  = document.querySelector('#page-buyer .form');
+
+    // ========== 1. Mutual exclusion for YES/NO pairs (scoped per form) ==========
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', function () {
+        const pairs = [
+          ['liens_yes', 'liens_no'],
+          ['full_yes', 'full_no'],
+          ['safety_yes', 'safety_no']
+        ];
+        const form = this.closest('.form');
+        for (const [a, b] of pairs) {
+          if (this.name === a && this.checked) {
+            const other = form.querySelector(`input[name="${b}"]`);
+            if (other) other.checked = false;
+          }
+          if (this.name === b && this.checked) {
+            const other = form.querySelector(`input[name="${a}"]`);
+            if (other) other.checked = false;
+          }
+        }
+        // After any checkbox change on seller form, sync to buyer
+        if (form === sellerForm) syncForms();
+      });
+    });
+
+    // ========== 2. VIN validation (works on every VIN field) ==========
+    document.querySelectorAll('.vin-input').forEach(vin => {
+      function validateVin() {
+        const start = vin.selectionStart;
+        const end = vin.selectionEnd;
+        const upper = vin.value.toUpperCase();
+        if (vin.value !== upper) {
+          vin.value = upper;
+          try { vin.setSelectionRange(start, end); } catch (e) {}
+        }
+        const cleaned = vin.value.replace(/[^A-HJ-NPR-Z0-9]/g, '');
+        if (vin.value !== cleaned) vin.value = cleaned;
+
+        const len = vin.value.length;
+        vin.classList.remove('vin-invalid', 'vin-valid');
+        if (len === 0) return;
+        if (len === 17) vin.classList.add('vin-valid');
+        else vin.classList.add('vin-invalid');
+      }
+      vin.addEventListener('input', validateVin);
+      vin.addEventListener('blur', validateVin);
+      vin.addEventListener('paste', () => setTimeout(validateVin, 0));
+      validateVin();
+    });
+
+    // ========== 3. Auto tax calculation (per form) ==========
+    document.querySelectorAll('.form').forEach(form => {
+      const price = form.querySelector('.price-input');
+      const gst   = form.querySelector('.gst-input');
+      const rst   = form.querySelector('.rst-input');
+      const total = form.querySelector('.total-input');
+      if (!price || !gst || !rst || !total) return;
+
+      gst.readOnly = true;
+      rst.readOnly = true;
+      total.readOnly = true;
+      gst.title = 'Auto-calculated (5% GST)';
+      rst.title = 'Auto-calculated (7% RST)';
+      total.title = 'Auto-calculated (Price + GST + RST)';
+
+      function parseMoney(val) {
+        const n = parseFloat(String(val).replace(/[^0-9.-]/g, ''));
+        return isNaN(n) ? 0 : n;
+      }
+      function formatMoney(n) { return n.toFixed(2); }
+
+      function updateTaxes() {
+        const p = parseMoney(price.value);
+        if (p <= 0) {
+          gst.value = ''; rst.value = ''; total.value = '';
+          return;
+        }
+        const g = p * 0.05;
+        const r = p * 0.07;
+        gst.value   = formatMoney(g);
+        rst.value   = formatMoney(r);
+        total.value = formatMoney(p + g + r);
+      }
+
+      price.addEventListener('input', () => {
+        updateTaxes();
+        if (form === sellerForm) syncForms();
+      });
+      price.addEventListener('blur', function () {
+        const n = parseMoney(this.value);
+        if (this.value.trim() !== '') this.value = formatMoney(n);
+        updateTaxes();
+        if (form === sellerForm) syncForms();
+      });
+    });
+
+    // ========== 4. Sync Seller form → Buyer form ==========
+    function syncForms() {
+      if (!sellerForm || !buyerForm) return;
+
+      // Text / number inputs
+      sellerForm.querySelectorAll('input[type="text"]').forEach(src => {
+        const name = src.getAttribute('name');
+        if (!name) return;
+        const dest = buyerForm.querySelector(`input[name="${name}"]`);
+        if (dest && dest !== src) {
+          dest.value = src.value;
+          // Re-run VIN validation styling on the copy
+          if (dest.classList.contains('vin-input')) {
+            dest.classList.remove('vin-invalid', 'vin-valid');
+            if (dest.value.length === 17) dest.classList.add('vin-valid');
+            else if (dest.value.length > 0) dest.classList.add('vin-invalid');
+          }
+        }
+      });
+
+      // Checkboxes
+      sellerForm.querySelectorAll('input[type="checkbox"]').forEach(src => {
+        const name = src.getAttribute('name');
+        if (!name) return;
+        const dest = buyerForm.querySelector(`input[name="${name}"]`);
+        if (dest) dest.checked = src.checked;
+      });
+    }
+
+    // Live sync: any input on the seller form updates the buyer form
+    sellerForm.querySelectorAll('input').forEach(el => {
+      el.addEventListener('input', syncForms);
+      el.addEventListener('change', syncForms);
+    });
+
+    // Also sync right before printing (safety net)
+    window.addEventListener('beforeprint', syncForms);
+
+    // Initial sync (in case of pre-filled values or defaults)
+    syncForms();
+  </script>
+</body>
+</html>
