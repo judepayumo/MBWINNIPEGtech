@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <!--
-  Bill of Sale Form
+  Bill of Sale Form - 11 July 2026
   Fillable HTML form with two-copy print (Seller’s Copy + Buyer’s Copy),
   auto tax calculation (GST 5% + RST 7%), VIN validation, and live sync.
-                                                                                        -->
+   -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bill of Sale</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,7 +23,7 @@
       font-size: 9.5pt;
       line-height: 1.2;
       color: #000;
-      background: #e8e8e8;
+      background: #b8b8b8;
       padding: 16px;
     }
 
@@ -412,7 +413,8 @@
       border-bottom: 1pt solid #000;
       background: transparent;
       font-family: inherit;
-      font-size: 11pt;
+      font-size: 14pt;
+      text-align: center;
       height: 20px;
       padding: 0 2px;
       outline: none;
@@ -568,6 +570,16 @@
       vertical-align: middle;
     }
     .print-hint button:hover { background: #0d47a1; }
+    .nav-buttons a {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    font-size: 35px;
+    color: #1565c0;
+    }
+    .nav-buttons a:hover {
+    color: #0d47a1;
+    }
   </style>
 </head>
 
@@ -575,6 +587,9 @@
   <div class="print-hint">
     Fill the form on the first page. The second page (Buyer’s Copy) auto-fills from it.
     <button onclick="window.print()">Print / Save PDF</button>
+  </div>
+  <div class="nav-buttons">
+    <a href="https://mercedes-amg.tech/Listing.html"><i class="fa fa-home"></i></a>
   </div>
 
   <!-- ==================== PAGE 1: SELLER’S COPY (master) ==================== -->
