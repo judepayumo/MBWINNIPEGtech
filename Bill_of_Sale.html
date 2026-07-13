@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <!--
-  Bill of Sale Form - 11 July 2026
+  Bill of Sale Form - 12 July 2026
   Fillable HTML form with two-copy print (Seller’s Copy + Buyer’s Copy),
   auto tax calculation (GST 5% + RST 7%), VIN validation, and live sync.
    -->
@@ -113,7 +113,7 @@
       background: transparent;
       font-family: inherit;
       font-size: 10pt;
-      width: 85px;
+      width: 89px;
       height: 16px;
       padding: 0 2px 1px;
       outline: none;
@@ -223,7 +223,6 @@
         width: 75px;
         min-width: 0;
         outline: none;
-        
     }
 
     .price-breakdown { 
@@ -570,6 +569,7 @@
       vertical-align: middle;
     }
     .print-hint button:hover { background: #0d47a1; }
+  /* SIDE NAV-OPTIONS */
     .nav-buttons a {
     position: fixed;
     top: 25px;
@@ -581,12 +581,32 @@
     color: #0d47a1;
     }
   </style>
+  <script>
+    function dealerOption(){ //SHOWS OR HIDES RST AND DEALER PERMIT FIELDS
+      if(document.getElementById("dealerInfo").checked == true){
+        document.getElementById("dealer-div1").style.display='block';
+        document.getElementById("dealer-div2").style.display='block';
+        document.getElementById("dealer-div3").style.display='block';
+        document.getElementById("dealer-div4").style.display='block';
+      }else{
+        document.getElementById("dealer-div1").style.display='none';
+        document.getElementById("dealer-div2").style.display='none';
+        document.getElementById("dealer-div3").style.display='none';
+        document.getElementById("dealer-div4").style.display='none';
+      }
+    }
+
+  </script>
 </head>
 
 <body>
   <div class="print-hint">
     Fill the form on the first page. The second page (Buyer’s Copy) auto-fills from it.
-    <button onclick="window.print()">Print / Save PDF</button>
+    <button onclick="window.print()">Print / Save PDF</button><br>
+    <input type="checkbox" id="auto-tax" checked>
+    <label for="auto-tax">Auto-Calculate Tax</label>&nbsp;&nbsp;
+    <input type="checkbox" id="dealerInfo" checked oninput="dealerOption()">
+    <label for="dealerInfo">Dealer</label>
   </div>
   <div class="nav-buttons">
     <a href="https://mercedes-amg.tech/Listing.html"><i class="fa fa-home"></i></a>
@@ -606,13 +626,13 @@
           <div class="fline">
             <label>NAME</label>
             <input type="text" name="seller_name">
-            <div class="dealer-inline">
+            <div class="dealer-inline" style="display: block;" id="dealer-div1">
               <label>| Dealer Permit:</label>
               <input type="text" name="dealer" autocomplete="off">
             </div>
           </div>
           <div class="fline"><label>ADDRESS</label><input type="text" name="seller_addr1">
-            <div class="rstno-inline">
+            <div class="rstno-inline" style="display: block;" id="dealer-div2">
               <label>| RST No.:</label>
               <input type="text" name="rstno" autocomplete="off">
             </div>
@@ -665,7 +685,7 @@
       <!-- PRICE BREAKDOWN -->
       <div class="price-section">
         <div class="price-header">THE SELLER AGREES TO SELL, AND THE BUYER AGREES TO PURCHASE, THE ABOVE-DESCRIBED VEHICLE FOR THE TOTAL CONSIDERATION OF $
-            <input type="text" name="total" class="total-input"> PAYABLE AS FOLLOWS: 
+            <input type="text" name="total" class="total-input" id="tax-total"> PAYABLE AS FOLLOWS: 
         </div>
         <div class="price-breakdown">
           <div class="price-item">
@@ -674,11 +694,11 @@
           </div>
           <div class="price-item">
             <label>GST $</label>
-            <input type="text" name="gst" class="gst-input">
+            <input type="text" name="gst" class="gst-input" id="tax-gst">
           </div>
           <div class="price-item">
             <label>RST $</label>
-            <input type="text" name="rst" class="rst-input">
+            <input type="text" name="rst" class="rst-input" id="tax-rst">
           </div>
         </div>
         <div class="price-subject">SUBJECT TO THE TERMS AND SPECIAL CONDITIONS OUTLINED BELOW:</div>
@@ -807,13 +827,13 @@
           <div class="fline">
             <label>NAME</label>
             <input type="text" name="seller_name">
-            <div class="dealer-inline">
+            <div class="dealer-inline" style="display: block;" id="dealer-div3">
               <label>| Dealer Permit:</label>
               <input type="text" name="dealer" autocomplete="off">
             </div>
           </div>
           <div class="fline"><label>ADDRESS</label><input type="text" name="seller_addr1">
-            <div class="rstno-inline">
+            <div class="rstno-inline" style="display: block;" id="dealer-div4">
               <label>| RST No.:</label>
               <input type="text" name="rstno" autocomplete="off">
             </div>
@@ -1062,6 +1082,7 @@
       gst.title = 'Auto-calculated (5% GST)';
       rst.title = 'Auto-calculated (7% RST)';
       total.title = 'Auto-calculated (Price + GST + RST)';
+      
 
       function parseMoney(val) {
         const n = parseFloat(String(val).replace(/[^0-9.-]/g, ''));
@@ -1075,11 +1096,18 @@
           gst.value = ''; rst.value = ''; total.value = '';
           return;
         }
-        const g = p * 0.05;
-        const r = p * 0.07;
-        gst.value   = formatMoney(g);
-        rst.value   = formatMoney(r);
-        total.value = formatMoney(p + g + r);
+
+        if(document.getElementById("auto-tax").checked == false){
+          gst.value   = formatMoney(0);
+          rst.value   = formatMoney(0);
+          total.value = formatMoney(p);
+        }else if(document.getElementById("auto-tax").checked == true){
+          const g = p * 0.05;
+          const r = p * 0.07;
+          gst.value   = formatMoney(g);
+          rst.value   = formatMoney(r);
+          total.value = formatMoney(p + g + r);
+        }
       }
 
       price.addEventListener('input', () => {
