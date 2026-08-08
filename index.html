@@ -1468,12 +1468,12 @@ Todo:
       }
     function viewCodes(){
       var datacardVIN = document.getElementById("dataVIN").value;
-      var datacardLink = "https://xentry.mercedes-benz.com/xhpi/datacard/chassis/" + datacardVIN + "/codes?lang=en";
+      var datacardLink = "https://xentry.mercedes-benz.com/xhpi/ng/datacard?ident=" + datacardVIN + "&preselectedTab=1&lang=en";
       window.open(datacardLink, '_blank');
     }
     function viewDatacard(){
       var datacardVIN = document.getElementById("dataVIN").value;
-      var datacardLink = "https://xentry.mercedes-benz.com/xhpi/datacard/chassis/" + datacardVIN + "/agg?lang=en";
+      var datacardLink = "https://xentry.mercedes-benz.com/xhpi/ng/datacard?ident=" + datacardVIN + "&preselectedTab=1&lang=en";
       window.open(datacardLink, '_blank');
     }
     function mecheck(){
@@ -2546,7 +2546,8 @@ Todo:
             <br>WIS: BE42.00-Z-9999AZ Brake Discard Limits
             <br><a href = "https://mpipartners.ca/documents/Notices%20to%20trade/Misc/LVI-Reference-Tool.pdf" target = "_blank">Quick Reference Tool&nbsp;</a>
             <a href = "https://web2.gov.mb.ca/laws/regs/annual/2019/031.pdf" target = "_blank">VESI Regulation&nbsp;</a>
-            <a href="/smol.pdf" target="_blank">Page 90-168</a>
+            <a href="/smol.pdf" target="_blank">Page 90-168&nbsp;</a>
+            <a href="/COI-Template.pdf" target="_blank">COI Form</a>
           </s3>
 
 				<span class="a"></span>
@@ -3994,7 +3995,7 @@ Todo:
 
         <button class="button"; onclick="CopyToClipboard('2023080010-G')">
           IMPELLER FUEL DELIVERY MODULE G-CLASS 4.5H</button><br>
-          <s1 id="2023080010-G">PER MAC RECALL CAMPAIGN 2023080010, THE FUEL PUMP IMPELLER ON CERTAIN VEHICLES MIGHT NOT MEET SPECIFICATION IN REGARDS TO MATERIAL CHARACTERISTICS. CONNECTED XENTRY AND BATTERY CHARGER. LIFTED THE VEHICLE AND REMOVED RIGHT REAR WHEEL AND FENDER LINER. PERFORMED ACTUATION TO EMPTY FUEL TANK AS FUEL LEVEL IS ABOVE 20%. PERFORMED FUEL VAPOUR EXTRACTION AND PLACED FUEL IN SUITABLE CONTAINER. PLACED VEHICLE IN NEUTRAL AND PARKING BRAKE IN SERVICE MODE. REMOVED LOAD COMPARTMENT LOWER COVER AND DISCONNECTED BATTERY GROUND. DISCONNECTED FUEL FILLER NECK AND VENT HOSE FROM THE FUEL TANK. REMOVED DRIVESHAFT. DISCONNECTED FUEL LINE AND ELECTRICAL CONNECTORS TO FUEL PUMP. LOWERED FUEL TANK. CLEANED AREA AND REMOVED FUEL PUMP. INSTALLED NEW FUEL PUMP. ASSEMBLED IN REVERSE ORDER. STARTED ENGINE AND CONFIRMED VEHICLE RUNS SMOOTHLY. PERFORMED TEST DRIVE. CONFIRMED NO CEL. </s1>
+          <s1 id="2023080010-G">PER MBC RECALL CAMPAIGN 2023080010, THE FUEL PUMP IMPELLER ON CERTAIN VEHICLES MIGHT NOT MEET SPECIFICATION IN REGARDS TO MATERIAL CHARACTERISTICS. CONNECTED XENTRY AND BATTERY CHARGER. LIFTED THE VEHICLE AND REMOVED RIGHT REAR WHEEL AND FENDER LINER. PERFORMED ACTUATION TO EMPTY FUEL TANK AS FUEL LEVEL IS ABOVE 20%. PERFORMED FUEL VAPOUR EXTRACTION AND PLACED FUEL IN SUITABLE CONTAINER. PLACED VEHICLE IN NEUTRAL AND PARKING BRAKE IN SERVICE MODE. REMOVED LOAD COMPARTMENT LOWER COVER AND DISCONNECTED BATTERY GROUND. DISCONNECTED FUEL FILLER NECK AND VENT HOSE FROM THE FUEL TANK. REMOVED DRIVESHAFT. DISCONNECTED FUEL LINE AND ELECTRICAL CONNECTORS TO FUEL PUMP. LOWERED FUEL TANK. CLEANED AREA AND REMOVED FUEL PUMP. INSTALLED NEW FUEL PUMP. ASSEMBLED IN REVERSE ORDER. STARTED ENGINE AND CONFIRMED VEHICLE RUNS SMOOTHLY. PERFORMED TEST DRIVE. CONFIRMED NO CEL. </s1>
 
         <span class="a"></span>
 
@@ -4134,7 +4135,7 @@ Todo:
         <button class="button"; onclick="CopyToClipboard('2025110009')">
 					CHARGING MANAGEMENT SYSTEM SOFTWARE UPDATE 0.3H</button><br>
 					<s1 id="2025110009";>
-            PER MAC CAMPAIGN 2025110009, MERCEDES-BENZ AG HAS DETERMINED THAT THE SOFTWARE FOR THE DC CHARGE-CONNECTION UNIT CONTROL UNIT (DCCU) DOES NOT CORRESPOND TO THE SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF N116/5 DCCU. CLEARED FAULTS. DISCONNECTED.
+            PER MBC CAMPAIGN 2025110009, MERCEDES-BENZ AG HAS DETERMINED THAT THE SOFTWARE FOR THE DC CHARGE-CONNECTION UNIT CONTROL UNIT (DCCU) DOES NOT CORRESPOND TO THE SERIES PRODUCTION CONFIGURATION. CONNECTED XENTRY AND BATTERY CHARGER. PERFORMED SOFTWARE UPDATE OF N116/5 DCCU. CLEARED FAULTS. DISCONNECTED.
 					</s1>
 
 				<span class="a"></span>
@@ -4387,7 +4388,7 @@ Todo:
         By accessing or using this Website, you acknowledge that you have read, understood, and agreed to this disclaimer. If you do not agree with any part of this disclaimer, please discontinue your use of the Website.
         </p>
         <br><p>
-          Updated: 05 July 2026</p></s3l>
+          Updated: 07 Aug 2026</p></s3l>
         <div class="password">
           <form id="PasswordForm" onsubmit="PwordCheck('Password')">
           <input type="password" id="passInput" placeholder="Password..." size="18">
